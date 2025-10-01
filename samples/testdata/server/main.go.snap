@@ -11,19 +11,19 @@ import (
 	"log"
 	"net/http"
 //line <generated>:1
-	__orchestrion_tracer "github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	__orchestrion_profiler "github.com/DataDog/dd-trace-go/v2/profiler"
-	__orchestrion_os "os"
+	__orch8rion_tracer "github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
+	__orch8rion_profiler "github.com/DataDog/dd-trace-go/v2/profiler"
+	__orch8rion_os "os"
 )
 
 //line samples/server/main.go:14
 func main() {
 //line <generated>:1
 	{
-		defer __orchestrion_profiler.Stop()
+		defer __orch8rion_profiler.Stop()
 	}
 	{
-		defer __orchestrion_tracer.Stop()
+		defer __orch8rion_tracer.Stop()
 	}
 //line samples/server/main.go:15
 	s := &http.Server{
@@ -64,18 +64,18 @@ func instrumentedHandler(w http.ResponseWriter, r *http.Request) {
 // comment that is just hanging out unattached
 //
 //line <generated>:1
-func init() { __orchestrion_tracer.Start() }
+func init() { __orch8rion_tracer.Start() }
 func init() {
-	switch __orchestrion_os.Getenv("DD_PROFILING_ENABLED") {
+	switch __orch8rion_os.Getenv("DD_PROFILING_ENABLED") {
 	case "1", "true", "auto":
 		// The "auto" value can be set if profiling is enabled via the
 		// Datadog Admission Controller. We always turn on the profiler in
 		// the "auto" case since we only send profiles after at least a
 		// minute, and we assume anything running that long is worth
 		// profiling.
-		err := __orchestrion_profiler.Start(
-			__orchestrion_profiler.WithProfileTypes(__orchestrion_profiler.CPUProfile, __orchestrion_profiler.HeapProfile, __orchestrion_profiler.GoroutineProfile, __orchestrion_profiler.MutexProfile),
-			__orchestrion_profiler.WithTags("orchestrion:true"),
+		err := __orch8rion_profiler.Start(
+			__orch8rion_profiler.WithProfileTypes(__orch8rion_profiler.CPUProfile, __orch8rion_profiler.HeapProfile, __orch8rion_profiler.GoroutineProfile, __orch8rion_profiler.MutexProfile),
+			__orch8rion_profiler.WithTags("orch8rion:true"),
 		)
 		if err != nil {
 			// TODO: is there a better reporting mechanism?

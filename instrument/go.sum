@@ -127,8 +127,8 @@ github.com/DataDog/dd-trace-go/contrib/valkey-io/valkey-go/v2 v2.2.3 h1:eMDfe6o9
 github.com/DataDog/dd-trace-go/contrib/valkey-io/valkey-go/v2 v2.2.3/go.mod h1:IbPUiw2NWnx6qHI/mqExwLqDFRqceFJKj7Tl4nB/Rpk=
 github.com/DataDog/dd-trace-go/instrumentation/testutils/grpc/v2 v2.2.3 h1:q1dcaLQOtO9s7ZAVhNnTk3mPJp7RLuyrbU9ZPg20VaE=
 github.com/DataDog/dd-trace-go/instrumentation/testutils/grpc/v2 v2.2.3/go.mod h1:1DJfDXukdEhe44y4UoYGqgXVS8EgMM99496Iet6hfv0=
-github.com/DataDog/dd-trace-go/orchestrion/all/v2 v2.2.3 h1:mxizQVQQw2JsZUFHCAzT9qf4W4iaYdbSPSTMGZzQhr4=
-github.com/DataDog/dd-trace-go/orchestrion/all/v2 v2.2.3/go.mod h1:3H/7t/Dhi2NZJxc3n2mBCKPe36jw/DGWkeJZb4TngbE=
+github.com/DataDog/dd-trace-go/orch8rion/all/v2 v2.2.3 h1:mxizQVQQw2JsZUFHCAzT9qf4W4iaYdbSPSTMGZzQhr4=
+github.com/DataDog/dd-trace-go/orch8rion/all/v2 v2.2.3/go.mod h1:3H/7t/Dhi2NZJxc3n2mBCKPe36jw/DGWkeJZb4TngbE=
 github.com/DataDog/dd-trace-go/v2 v2.2.3 h1:6RvVdY9suR/rYYYZHjx4txrtSYcRZ5u5Cs2sXMsIBf4=
 github.com/DataDog/dd-trace-go/v2 v2.2.3/go.mod h1:1LcqWELgQwgk6x7sO0MXUgsvxcAVjxSA423cUjvUqR0=
 github.com/DataDog/go-libddwaf/v4 v4.5.0 h1:dXD9xL9T02Mqu9AH7imXpGThKAYqO3BmT2QoXbMFxow=

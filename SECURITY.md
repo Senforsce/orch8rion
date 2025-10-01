@@ -10,4 +10,4 @@ communications.
 
 We request that you do not publicly disclose the issue until we had a chance to address it.
 
-[mailto]: mailto:security@datadoghq.com?subject=[github.com/DataDog/orchestrion]%20Vulnerability%20report
+[mailto]: mailto:security@datadoghq.com?subject=[github.com/senforsce/orch8rion]%20Vulnerability%20report

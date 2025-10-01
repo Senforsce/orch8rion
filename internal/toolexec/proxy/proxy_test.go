@@ -10,7 +10,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/toolexec/proxy"
+	"github.com/senforsce/orch8rion/internal/toolexec/proxy"
 
 	"github.com/stretchr/testify/require"
 )
@@ -70,7 +70,7 @@ func TestParseCommand(t *testing.T) {
 		},
 	} {
 		t.Run(name, func(t *testing.T) {
-			cmd := proxy.MustParseCommand(context.Background(), "github.com/DataDog/orchestrion.test", tc.input)
+			cmd := proxy.MustParseCommand(context.Background(), "github.com/senforsce/orch8rion.test", tc.input)
 			require.Equal(t, tc.expectedType, cmd.Type())
 			require.True(t, reflect.DeepEqual(tc.input, cmd.Args()))
 		})

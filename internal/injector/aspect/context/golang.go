@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"go/version"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 // GoLangVersion represents a go language level. It's a string of the form "go1.18".

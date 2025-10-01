@@ -8,7 +8,7 @@ a PR can be submitted for review. PRs created before a decision has been reached
 
 ### License
 
-Orchestrion is licensed under the [`Apache-2.0` license](/LICENSE). By sumitting a PR to this repository, you are making
+Orch8rion is licensed under the [`Apache-2.0` license](/LICENSE). By sumitting a PR to this repository, you are making
 the contribution under the terms of the [`Apache-2.0` license](/LICENSE), and that you are authorized to do so.
 
 All files in this repository must include the appropriate `Apache-2.0` license header:
@@ -25,7 +25,7 @@ That code must be governed by a license that is compatible with the terms of [`A
 
 ### Pull Request
 
-Orchestrion uses the [conventional commits][conventional-commits] specification for commit messages. Pull requests are
+Orch8rion uses the [conventional commits][conventional-commits] specification for commit messages. Pull requests are
 squash-merged, and the PR title and body are used as the commit title and message that will land on the `main` branch.
 
 Please make sure your PR titles follow the [conventional commits][conventional-commits] specification.
@@ -56,17 +56,17 @@ for your change is. Reviewers may request additional tests be added before appro
 
 #### Integration Tests
 
-There is [an `orchestrion` integration test suite in `dd-trace-go`][dd-trace-go] that validates provided integration
-configurations. This test suite is executed as part of orchestrion's CI. It can be executed locally using the following
+There is [an `orch8rion` integration test suite in `dd-trace-go`][dd-trace-go] that validates provided integration
+configurations. This test suite is executed as part of orch8rion's CI. It can be executed locally using the following
 commands:
 
 ```console
 $ git clone github.com:DataDog/dd-trace-go         # Clone the DataDog/dd-trace-go repository
-$ cd dd-trace-go/internal/orchestrion/_integration # Move into the integration tests directory
-$ go mod edit \                                    # Use the local copy of orchestrion
-    -replace "github.com/DataDog/orchestrion=>${orchestrion_dir}"
+$ cd dd-trace-go/internal/orch8rion/_integration # Move into the integration tests directory
+$ go mod edit \                                    # Use the local copy of orch8rion
+    -replace "github.com/senforsce/orch8rion=>${orch8rion_dir}"
 $ go mod tidy                                      # Make sure go.mod & go.sum are up-to-date
-$ go run github.com/DataDog/orchestrion \          # Run integration test suite with orchestrion
+$ go run github.com/senforsce/orch8rion \          # Run integration test suite with orch8rion
     go test -shuffle=on ./...
 ```
 
@@ -85,6 +85,6 @@ All Go code must be formatted using `go fmt` so that it is in "canonical go form
 our automated testing suite.
 
 <!-- Links -->
-[new-issue]: https://github.com/DataDog/orchestrion/issues/new/choose
+[new-issue]: https://github.com/senforsce/orch8rion/issues/new/choose
 [conventional-commits]: https://www.conventionalcommits.org/en/v1.0.0/
-[dd-trace-go]: https://github.com/DataDog/dd-trace-go/internal/orchestrion/_integration
+[dd-trace-go]: https://github.com/DataDog/dd-trace-go/internal/orch8rion/_integration

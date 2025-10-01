@@ -13,8 +13,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/DataDog/orchestrion/internal/injector/basiclit"
 	"github.com/dave/dst"
+	"github.com/senforsce/orch8rion/internal/injector/basiclit"
 )
 
 type (
@@ -64,7 +64,7 @@ func (r *ReferenceMap) AddImport(file *dst.File, nodes []dst.Node, path string, 
 		if r.aliases == nil {
 			r.aliases = make(map[string]string)
 		}
-		r.aliases[path] = "__orchestrion_" + localName
+		r.aliases[path] = "__orch8rion_" + localName
 	}
 
 	return true

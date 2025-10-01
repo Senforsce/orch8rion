@@ -96,7 +96,7 @@ func documentSchemaInstance(schema *jsonschema.Schema, path string) error {
 	if prop.Deprecated {
 		_, _ = fmt.Fprintln(file, `{{<callout type="warning">}}`)
 		_, _ = fmt.Fprintln(file, "This feature is deprecated and should not be used in new configurations, as it may be")
-		_, _ = fmt.Fprintln(file, "removed in future versions of Orchestrion.")
+		_, _ = fmt.Fprintln(file, "removed in future versions of Orch8rion.")
 		_, _ = fmt.Fprintln(file, `{{</callout>}}`)
 	}
 	_, _ = fmt.Fprintln(file)
@@ -138,7 +138,7 @@ func loadSchema() (*jsonschema.Schema, *jsonschema.Schema, error) {
 
 	json = normalizeSchema(json)
 
-	schemaUrl := "https://datadoghq.dev/orchestrion/schema.json"
+	schemaUrl := "https://datadoghq.dev/orch8rion/schema.json"
 	compiler := jsonschema.NewCompiler()
 
 	if err := compiler.AddResource(schemaUrl, json); err != nil {

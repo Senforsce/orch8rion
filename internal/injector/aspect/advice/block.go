@@ -9,12 +9,12 @@ import (
 	gocontext "context"
 	"fmt"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/advice/code"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/dave/dst"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/advice/code"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 type prependStatements struct {

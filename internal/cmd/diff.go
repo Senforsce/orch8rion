@@ -12,17 +12,17 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/DataDog/orchestrion/internal/binpath"
-	"github.com/DataDog/orchestrion/internal/goproxy"
-	"github.com/DataDog/orchestrion/internal/pin"
-	"github.com/DataDog/orchestrion/internal/report"
+	"github.com/senforsce/orch8rion/internal/binpath"
+	"github.com/senforsce/orch8rion/internal/goproxy"
+	"github.com/senforsce/orch8rion/internal/pin"
+	"github.com/senforsce/orch8rion/internal/report"
 	"github.com/urfave/cli/v2"
 )
 
 var (
 	filenameFlag = cli.BoolFlag{
 		Name:  "files",
-		Usage: "Only show file paths created by orchestrion instead of diff output",
+		Usage: "Only show file paths created by orch8rion instead of diff output",
 	}
 
 	filterFlag = cli.StringFlag{
@@ -52,7 +52,7 @@ var (
 
 	Diff = &cli.Command{
 		Name:  "diff",
-		Usage: "Generates a diff between a nominal and orchestrion-instrumented build. Use --build to execute a build first, or provide a work directory path obtained from `orchestrion go build -work -a`. This is incompatible with coverage related flags.",
+		Usage: "Generates a diff between a nominal and orch8rion-instrumented build. Use --build to execute a build first, or provide a work directory path obtained from `orch8rion go build -work -a`. This is incompatible with coverage related flags.",
 		Args:  true,
 		Flags: []cli.Flag{
 			&filenameFlag,
@@ -161,11 +161,11 @@ func outputReport(clictx *cli.Context, rpt report.Report) error {
 }
 
 func executeBuildAndCaptureWorkDir(clictx *cli.Context, buildArgs []string) (string, error) {
-	if err := pin.AutoPinOrchestrion(clictx.Context, clictx.App.Writer, clictx.App.ErrWriter); err != nil {
+	if err := pin.AutoPinOrch8rion(clictx.Context, clictx.App.Writer, clictx.App.ErrWriter); err != nil {
 		return "", cli.Exit(err, -1)
 	}
 
-	cmd, err := goproxy.BuildCmd(clictx.Context, buildArgs, goproxy.WithToolexec(binpath.Orchestrion, "toolexec"))
+	cmd, err := goproxy.BuildCmd(clictx.Context, buildArgs, goproxy.WithToolexec(binpath.Orch8rion, "toolexec"))
 	if err != nil {
 		return "", fmt.Errorf("building command: %w", err)
 	}

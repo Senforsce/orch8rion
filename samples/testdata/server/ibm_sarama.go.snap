@@ -10,7 +10,7 @@ import (
 	"github.com/IBM/sarama"
 
 //line <generated>:1
-	__orchestrion_saramatrace "github.com/DataDog/dd-trace-go/contrib/IBM/sarama/v2"
+	__orch8rion_saramatrace "github.com/DataDog/dd-trace-go/contrib/IBM/sarama/v2"
 )
 
 //line samples/server/ibm_sarama.go:10
@@ -22,7 +22,7 @@ func ibmSaramaProducer() {
 //line <generated>:1
 		func(p sarama.SyncProducer, err error) (sarama.SyncProducer, error) {
 			if p != nil {
-				p = __orchestrion_saramatrace.WrapSyncProducer(nil, p)
+				p = __orch8rion_saramatrace.WrapSyncProducer(nil, p)
 			}
 			return p, err
 		}(
@@ -46,7 +46,7 @@ func ibmSaramaProducerFromClient() {
 //line <generated>:1
 		func(p sarama.SyncProducer, err error) (sarama.SyncProducer, error) {
 			if p != nil {
-				p = __orchestrion_saramatrace.WrapSyncProducer(nil, p)
+				p = __orch8rion_saramatrace.WrapSyncProducer(nil, p)
 			}
 			return p, err
 		}(
@@ -66,7 +66,7 @@ func ibmSaramaAsyncProducer() {
 //line <generated>:1
 		func(p sarama.AsyncProducer, err error) (sarama.AsyncProducer, error) {
 			if p != nil {
-				p = __orchestrion_saramatrace.WrapAsyncProducer(nil, p)
+				p = __orch8rion_saramatrace.WrapAsyncProducer(nil, p)
 			}
 			return p, err
 		}(
@@ -90,7 +90,7 @@ func ibmSaramaAsyncProducerFromClient() {
 //line <generated>:1
 		func(p sarama.AsyncProducer, err error) (sarama.AsyncProducer, error) {
 			if p != nil {
-				p = __orchestrion_saramatrace.WrapAsyncProducer(nil, p)
+				p = __orch8rion_saramatrace.WrapAsyncProducer(nil, p)
 			}
 			return p, err
 		}(

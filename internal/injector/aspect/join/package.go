@@ -11,12 +11,12 @@ import (
 	"path"
 	"strings"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/goenv"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/may"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/goenv"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/may"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 type importPath string

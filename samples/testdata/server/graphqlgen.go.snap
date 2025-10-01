@@ -15,7 +15,7 @@ import (
 	"github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 //line <generated>:1
-	__orchestrion_gqlgentrace "github.com/DataDog/dd-trace-go/contrib/99designs/gqlgen/v2"
+	__orch8rion_gqlgentrace "github.com/DataDog/dd-trace-go/contrib/99designs/gqlgen/v2"
 )
 
 //line samples/server/graphqlgen.go:18
@@ -33,7 +33,7 @@ func Serve99Designs() {
 	server :=
 //line <generated>:1
 		func(s *handler.Server) *handler.Server {
-			s.Use(__orchestrion_gqlgentrace.NewTracer())
+			s.Use(__orch8rion_gqlgentrace.NewTracer())
 			return s
 		}(
 //line samples/server/graphqlgen.go:29

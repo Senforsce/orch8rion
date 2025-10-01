@@ -13,9 +13,9 @@ import (
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/ext"
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/traceutil"
 	"github.com/nats-io/nats.go"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/traceutil"
 )
 
 type (
@@ -42,7 +42,7 @@ func HandleRequest[Res any, Req Request[Res]](ctx context.Context, handler Reque
 		go func() {
 			if spanCtx, err := tracer.Extract(traceutil.NATSCarrier{Msg: msg}); err == nil && spanCtx != nil {
 				span := tracer.StartSpan("nats.server",
-					tracer.ServiceName("github.com/DataDog/orchestrion/internal/jobserver"),
+					tracer.ServiceName("github.com/senforsce/orch8rion/internal/jobserver"),
 					tracer.ResourceName(msg.Subject),
 					tracer.Tag(ext.SpanKind, ext.SpanKindServer),
 					tracer.Tag(ext.SpanType, "nats"),

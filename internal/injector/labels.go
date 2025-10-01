@@ -15,22 +15,22 @@ import (
 )
 
 const (
-	ddIgnore          = "//dd:ignore"
-	orchestrionIgnore = "//orchestrion:ignore"
+	ddIgnore        = "//dd:ignore"
+	orch8rionIgnore = "//orch8rion:ignore"
 )
 
 var warnOnce sync.Once
 
-// isIgnored returns true if the node is prefixed by an `//orchestrion:ignore` (or the legacy `//dd:ignore`) directive.
+// isIgnored returns true if the node is prefixed by an `//orch8rion:ignore` (or the legacy `//dd:ignore`) directive.
 func isIgnored(ctx context.Context, node dst.Node) bool {
 	for _, cmt := range node.Decorations().Start.All() {
-		if cmt == orchestrionIgnore || strings.HasPrefix(cmt, orchestrionIgnore+" ") {
+		if cmt == orch8rionIgnore || strings.HasPrefix(cmt, orch8rionIgnore+" ") {
 			return true
 		}
 		if cmt == ddIgnore || strings.HasPrefix(cmt, ddIgnore+" ") {
 			warnOnce.Do(func() {
 				log := zerolog.Ctx(ctx)
-				log.Warn().Msg("The " + ddIgnore + " directive is deprecated and may be removed in a future release of orchestrion. Please use " + orchestrionIgnore + " instead.")
+				log.Warn().Msg("The " + ddIgnore + " directive is deprecated and may be removed in a future release of orch8rion. Please use " + orch8rionIgnore + " instead.")
 			})
 			return true
 		}

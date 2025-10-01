@@ -16,8 +16,8 @@ According to [Wikipedia][wiki-aop]:
 
 One can easily understand how *Observability* and *Security Monitoring* of an
 application are *cross-cutting* concerns... As such, the automatic
-instrumentation performed by `orchestrion` is modeled using *aspects*. That
-being said, the AoP language is used somewhat loosely by Orchestrion.
+instrumentation performed by `orch8rion` is modeled using *aspects*. That
+being said, the AoP language is used somewhat loosely by Orch8rion.
 
 ## Aspect
 
@@ -26,12 +26,12 @@ the Wikipedia definition above, is a set of *join points*) and *advice*.
 
 ### Join Points
 
-Orchestrion performs code injection by traversing (and modifying) each and every
+Orch8rion performs code injection by traversing (and modifying) each and every
 Go source file's <abbr title="Abstract Syntax Tree">AST</abbr>. In this
 perspective, one can think of a *Join Point* as a function that selects or
 rejects an AST node based on its attributes.
 
-Orchestrion evaluates *Join Points* in context, where each node is presented to
+Orch8rion evaluates *Join Points* in context, where each node is presented to
 these functions with:
 - its complete ancestry in the AST, meaning *Join Points* are able to walk up
   the AST to decide whether to select a node or not;
@@ -48,7 +48,7 @@ addressing AST nodes.
 node with something else, modifying certain attributes of the node, or adding
 new nodes before or after it.
 
-Orchestrion executes *Advice* on all AST nodes matched by the associated *Join
+Orch8rion executes *Advice* on all AST nodes matched by the associated *Join
 Point* in post-order; meaning a node is being modified only after all its
 children have been considered already. This implies nodes modified by an
 *Aspect* are not evaluated by further *Join Points*, and eliminates the risk of

@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/DataDog/orchestrion/internal/version"
+	"github.com/senforsce/orch8rion/internal/version"
 	"github.com/urfave/cli/v2"
 )
 
@@ -25,7 +25,7 @@ var Version = &cli.Command{
 		&cli.BoolFlag{
 			Name:    "verbose",
 			Aliases: []string{"v"},
-			Usage:   "display the version of the orchestrion binary that started this command (if different from the current)",
+			Usage:   "display the version of the orch8rion binary that started this command (if different from the current)",
 			Hidden:  true,
 		},
 	},
@@ -34,7 +34,7 @@ var Version = &cli.Command{
 		if c.Bool("static") {
 			tag, _ = version.TagInfo()
 		}
-		if _, err := fmt.Fprintf(c.App.Writer, "orchestrion %s", tag); err != nil {
+		if _, err := fmt.Fprintf(c.App.Writer, "orch8rion %s", tag); err != nil {
 			return err
 		}
 

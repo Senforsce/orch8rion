@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/version"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/version"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -30,18 +30,18 @@ func TestAutoPin(t *testing.T) {
 		tmp := scaffold(t, make(map[string]string))
 		chdir(t, tmp)
 
-		require.NoError(t, AutoPinOrchestrion(context.Background(), io.Discard, io.Discard))
+		require.NoError(t, AutoPinOrch8rion(context.Background(), io.Discard, io.Discard))
 
 		assert.NotEmpty(t, os.Getenv(envVarCheckedGoMod))
 
-		assert.FileExists(t, filepath.Join(tmp, config.FilenameOrchestrionToolGo))
+		assert.FileExists(t, filepath.Join(tmp, config.FilenameOrch8rionToolGo))
 		assert.FileExists(t, filepath.Join(tmp, "go.sum"))
 
 		data, err := parseGoMod(ctx, filepath.Join(tmp, "go.mod"))
 		require.NoError(t, err)
 
 		rawTag, _ := version.TagInfo()
-		assert.Contains(t, data.Require, goModRequire{"github.com/DataDog/orchestrion", rawTag})
+		assert.Contains(t, data.Require, goModRequire{"github.com/senforsce/orch8rion", rawTag})
 	})
 
 	t.Run("already-checked", func(t *testing.T) {
@@ -52,9 +52,9 @@ func TestAutoPin(t *testing.T) {
 
 		t.Setenv(envVarCheckedGoMod, "true")
 
-		require.NoError(t, AutoPinOrchestrion(ctx, io.Discard, io.Discard))
+		require.NoError(t, AutoPinOrch8rion(ctx, io.Discard, io.Discard))
 
-		assert.NoFileExists(t, filepath.Join(tmp, config.FilenameOrchestrionToolGo))
+		assert.NoFileExists(t, filepath.Join(tmp, config.FilenameOrch8rionToolGo))
 		assert.NoFileExists(t, filepath.Join(tmp, "go.sum"))
 	})
 }

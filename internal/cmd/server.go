@@ -14,13 +14,13 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/DataDog/orchestrion/internal/filelock"
-	"github.com/DataDog/orchestrion/internal/goflags"
-	"github.com/DataDog/orchestrion/internal/jobserver"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
 	"github.com/fsnotify/fsnotify"
 	"github.com/goccy/go-yaml"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/filelock"
+	"github.com/senforsce/orch8rion/internal/goflags"
+	"github.com/senforsce/orch8rion/internal/jobserver"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
 
 	"github.com/urfave/cli/v2"
 )
@@ -28,7 +28,7 @@ import (
 var Server = &cli.Command{
 	Name:        "server",
 	Usage:       "Start an Objectsrion job server.",
-	Description: "The job server is used to remove duplicated processing that can occur when instrumenting large applications, due to how Orchestrion injects new dependencies that the go toolchain was initially not aware of.\n\nUsers do not normally need to use this command directly, as Orchestrion automatically manages servers during runtime.",
+	Description: "The job server is used to remove duplicated processing that can occur when instrumenting large applications, due to how Orch8rion injects new dependencies that the go toolchain was initially not aware of.\n\nUsers do not normally need to use this command directly, as Orch8rion automatically manages servers during runtime.",
 	Flags: []cli.Flag{
 		&cli.StringFlag{
 			Name:  "url-file",

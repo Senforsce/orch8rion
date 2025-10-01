@@ -1,16 +1,16 @@
-module github.com/DataDog/orchestrion/_samples
+module github.com/senforsce/orch8rion/_samples
 
 go 1.24.0
 
 replace (
-	github.com/DataDog/orchestrion => ..
-	github.com/DataDog/orchestrion/instrument => ../instrument
+	github.com/senforsce/orch8rion => ..
+	github.com/senforsce/orch8rion/instrument => ../instrument
 )
 
 require (
 	github.com/99designs/gqlgen v0.17.80
-	github.com/DataDog/orchestrion v1.5.0
-	github.com/DataDog/orchestrion/instrument v1.5.0
+	github.com/senforsce/orch8rion v1.5.0
+	github.com/senforsce/orch8rion/instrument v1.5.0
 	github.com/IBM/sarama v1.46.1
 	github.com/Shopify/sarama v1.38.1
 	github.com/aws/aws-sdk-go v1.55.8
@@ -100,7 +100,7 @@ require (
 	github.com/DataDog/dd-trace-go/contrib/sirupsen/logrus/v2 v2.2.3 // indirect
 	github.com/DataDog/dd-trace-go/contrib/twitchtv/twirp/v2 v2.2.3 // indirect
 	github.com/DataDog/dd-trace-go/contrib/valkey-io/valkey-go/v2 v2.2.3 // indirect
-	github.com/DataDog/dd-trace-go/orchestrion/all/v2 v2.2.3 // indirect
+	github.com/DataDog/dd-trace-go/orch8rion/all/v2 v2.2.3 // indirect
 	github.com/DataDog/dd-trace-go/v2 v2.2.3 // indirect
 	github.com/DataDog/go-libddwaf/v4 v4.5.0 // indirect
 	github.com/DataDog/go-runtime-metrics-internal v0.0.4-0.20250806100345-ca5e7fdaf7b6 // indirect

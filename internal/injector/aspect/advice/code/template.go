@@ -15,13 +15,13 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/version"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/dave/dst"
 	"github.com/dave/dst/dstutil"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/version"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 type Template struct {

@@ -10,14 +10,14 @@ import (
 	"path/filepath"
 )
 
-var Orchestrion string
+var Orch8rion string
 
 func init() {
 	var err error
-	if Orchestrion, err = os.Executable(); err != nil {
-		if Orchestrion, err = filepath.Abs(os.Args[0]); err != nil {
-			Orchestrion = os.Args[0]
+	if Orch8rion, err = os.Executable(); err != nil {
+		if Orch8rion, err = filepath.Abs(os.Args[0]); err != nil {
+			Orch8rion = os.Args[0]
 		}
 	}
-	Orchestrion = filepath.Clean(Orchestrion)
+	Orch8rion = filepath.Clean(Orch8rion)
 }

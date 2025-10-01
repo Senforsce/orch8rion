@@ -1,6 +1,6 @@
-pkgpath: github.com/DataDog/orchestrion
+pkgpath: github.com/senforsce/orch8rion
 yaml:
   name: <built-in>
   aspects:
-    - built.WithOrchestrion
-    - built.WithOrchestrionVersion
+    - built.WithOrch8rion
+    - built.WithOrch8rionVersion

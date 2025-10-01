@@ -11,9 +11,9 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/binpath"
-	"github.com/DataDog/orchestrion/internal/goproxy"
-	"github.com/DataDog/orchestrion/internal/pin"
+	"github.com/senforsce/orch8rion/internal/binpath"
+	"github.com/senforsce/orch8rion/internal/goproxy"
+	"github.com/senforsce/orch8rion/internal/pin"
 	"github.com/urfave/cli/v2"
 )
 
@@ -21,7 +21,7 @@ var (
 	Go = &cli.Command{
 		Name:            "go",
 		Usage:           "Executes standard go commands with automatic instrumentation enabled",
-		UsageText:       "orchestrion go [go command arguments...]",
+		UsageText:       "orch8rion go [go command arguments...]",
 		Args:            true,
 		SkipFlagParsing: true,
 		Action: func(clictx *cli.Context) (err error) {
@@ -30,11 +30,11 @@ var (
 			)
 			defer func() { span.Finish(tracer.WithError(err)) }()
 
-			if err := pin.AutoPinOrchestrion(ctx, clictx.App.Writer, clictx.App.ErrWriter); err != nil {
+			if err := pin.AutoPinOrch8rion(ctx, clictx.App.Writer, clictx.App.ErrWriter); err != nil {
 				return cli.Exit(err, -1)
 			}
 
-			if err := goproxy.Run(ctx, clictx.Args().Slice(), goproxy.WithToolexec(binpath.Orchestrion, "toolexec")); err != nil {
+			if err := goproxy.Run(ctx, clictx.Args().Slice(), goproxy.WithToolexec(binpath.Orch8rion, "toolexec")); err != nil {
 				var exitErr *exec.ExitError
 				if errors.As(err, &exitErr) {
 					return cli.Exit(err, exitErr.ExitCode())

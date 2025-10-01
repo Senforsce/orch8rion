@@ -4,7 +4,7 @@
 // Copyright 2023-present Datadog, Inc.
 
 // Package config contains APIs used to work with injector configuration files,
-// which are formed by [FilenameOrchestrionToolGo] and [FilenameOrchestrionYML] files.
+// which are formed by [FilenameOrch8rionToolGo] and [FilenameOrch8rionYML] files.
 package config
 
 import (
@@ -13,7 +13,7 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
 	"golang.org/x/tools/go/packages"
 )
 
@@ -93,7 +93,7 @@ func NewLoader(pkgLoader PackageLoader, dir string, validate bool) *Loader {
 // Load proceeds to load the configuration from this loader's directory.
 func (l *Loader) Load(ctx context.Context) (_ Config, err error) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "Load",
-		tracer.ServiceName("github.com/DataDog/orchestrion/internal/injector/config"),
+		tracer.ServiceName("github.com/senforsce/orch8rion/internal/injector/config"),
 		tracer.ResourceName(l.dir),
 		tracer.Tag("validate", l.validate),
 	)

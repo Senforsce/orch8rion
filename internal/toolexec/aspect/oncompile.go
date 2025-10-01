@@ -14,22 +14,22 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/goenv"
-	"github.com/DataDog/orchestrion/internal/injector"
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/injector/typed"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/jobserver/pkgs"
-	"github.com/DataDog/orchestrion/internal/toolexec/aspect/linkdeps"
-	"github.com/DataDog/orchestrion/internal/toolexec/importcfg"
-	"github.com/DataDog/orchestrion/internal/toolexec/proxy"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/goenv"
+	"github.com/senforsce/orch8rion/internal/injector"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/injector/typed"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/jobserver/pkgs"
+	"github.com/senforsce/orch8rion/internal/toolexec/aspect/linkdeps"
+	"github.com/senforsce/orch8rion/internal/toolexec/importcfg"
+	"github.com/senforsce/orch8rion/internal/toolexec/proxy"
 	"golang.org/x/tools/go/packages"
 )
 
-// OrchestrionDirPathElement is the prefix for orchestrion source files in the build output directory.
-var OrchestrionDirPathElement = filepath.Join("orchestrion", "src")
+// Orch8rionDirPathElement is the prefix for orch8rion source files in the build output directory.
+var Orch8rionDirPathElement = filepath.Join("orch8rion", "src")
 
 func (w Weaver) OnCompile(ctx context.Context, cmd *proxy.CompileCommand) (resErr error) {
 	span, ctx := tracer.StartSpanFromContext(ctx, "Weaver.OnCompile",
@@ -94,7 +94,7 @@ func (w Weaver) OnCompile(ctx context.Context, cmd *proxy.CompileCommand) (resEr
 		ImportMap:  imports.PackageFile,
 		GoVersion:  cmd.Flags.Lang,
 		ModifiedFile: func(file string) string {
-			return filepath.Join(filepath.Dir(cmd.Flags.Output), OrchestrionDirPathElement, cmd.Flags.Package, filepath.Base(file))
+			return filepath.Join(filepath.Dir(cmd.Flags.Output), Orch8rionDirPathElement, cmd.Flags.Package, filepath.Base(file))
 		},
 	}
 

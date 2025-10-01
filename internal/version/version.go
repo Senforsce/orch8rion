@@ -18,7 +18,7 @@ var (
 	buildInfoIsDev   bool
 )
 
-// Tag returns the version tag for this orchestrion build.
+// Tag returns the version tag for this orch8rion build.
 func Tag() string {
 	if buildInfoVersion != "" {
 		return buildInfoVersion

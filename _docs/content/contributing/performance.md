@@ -5,13 +5,13 @@ weight: 99
 ---
 
 This document provides information on how to obtain performance insight on
-Orchestrion, when trying to identify performance optimization opportunities.
+Orch8rion, when trying to identify performance optimization opportunities.
 
 ## Built-in Profiling
 
-Orchestrion has built-in support for profiling; which can be turned on by
-specifying command line arguments to an `orchestrion` command. These flags are
-not show by the output of `orchestrion --help` as they are only intended for
+Orch8rion has built-in support for profiling; which can be turned on by
+specifying command line arguments to an `orch8rion` command. These flags are
+not show by the output of `orch8rion --help` as they are only intended for
 deep troubleshooting:
 
 - `-profile-path=DIR` specifies the path to a directory where profiler outputs
@@ -26,11 +26,11 @@ increase any build timeout that may prevent the build from completing fully.
 
 The main use-case for these involve using the `cpu` or `heap` profilers, then
 using the `go tool pprof` tool to combine all generated profiles (a build
-involves a great many `orchestrion` processes) into a single one, then
+involves a great many `orch8rion` processes) into a single one, then
 investigating it in some graphical user interface:
 
 ```console
-$ orchestrion --profile-path="$PWD/profiles" --profile=cpu go build .
+$ orch8rion --profile-path="$PWD/profiles" --profile=cpu go build .
 $ go tool pprof -proto $PWD/profiles/*.pprof > profile.pprof
 $ go tool pprof -http=localhost:6060 profile.pprof
 ```

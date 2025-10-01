@@ -19,10 +19,10 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/injector"
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/version"
+	"github.com/senforsce/orch8rion/internal/injector"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/version"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/tools/go/packages"
@@ -82,7 +82,7 @@ func TestSamples(t *testing.T) {
 					return filepath.Join(tmp, filepath.Base(filename))
 				},
 				RootConfig: map[string]string{"httpmode": "wrap"},
-				ImportPath: "github.com/DataDog/orchestrion/samples/" + dir,
+				ImportPath: "github.com/Senforsce/orch8rion/samples/" + dir,
 				Lookup:     testLookup,
 				ImportMap:  importMap,
 			}

@@ -14,8 +14,8 @@ import (
 	"testing"
 	"text/template"
 
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/version"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/version"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/mod/semver"
@@ -33,18 +33,18 @@ func TestPin(t *testing.T) {
 		tmp := scaffold(t, make(map[string]string))
 		chdir(t, tmp)
 
-		require.NoError(t, PinOrchestrion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}))
+		require.NoError(t, PinOrch8rion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}))
 
-		assert.FileExists(t, filepath.Join(tmp, config.FilenameOrchestrionToolGo))
+		assert.FileExists(t, filepath.Join(tmp, config.FilenameOrch8rionToolGo))
 		assert.FileExists(t, filepath.Join(tmp, "go.sum"))
 
 		data, err := parseGoMod(ctx, filepath.Join(tmp, "go.mod"))
 		require.NoError(t, err)
 
 		rawTag, _ := version.TagInfo()
-		assert.Contains(t, data.Require, goModRequire{"github.com/DataDog/orchestrion", rawTag})
+		assert.Contains(t, data.Require, goModRequire{"github.com/senforsce/orch8rion", rawTag})
 
-		content, err := os.ReadFile(filepath.Join(tmp, config.FilenameOrchestrionToolGo))
+		content, err := os.ReadFile(filepath.Join(tmp, config.FilenameOrch8rionToolGo))
 		require.NoError(t, err)
 
 		assert.Contains(t, string(content), "//go:generate")
@@ -52,11 +52,11 @@ func TestPin(t *testing.T) {
 
 	t.Run("upgrade:dd-trace-go", func(t *testing.T) {
 		tmp := scaffold(t, map[string]string{datadogTracerV1: "v1.73.2"})
-		require.NoError(t, os.WriteFile(filepath.Join(tmp, config.FilenameOrchestrionToolGo), []byte(`//go:build tools
+		require.NoError(t, os.WriteFile(filepath.Join(tmp, config.FilenameOrch8rionToolGo), []byte(`//go:build tools
 package tools
 
 import (
-	_ "github.com/DataDog/orchestrion"
+	_ "github.com/senforsce/orch8rion"
 	_ "gopkg.in/DataDog/dd-trace-go.v1"
 )
 `), 0o644))
@@ -73,7 +73,7 @@ func main() {}
 		chdir(t, tmp)
 
 		// WHEN
-		require.NoError(t, PinOrchestrion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}))
+		require.NoError(t, PinOrch8rion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}))
 
 		// THEN
 		data, err := parseGoMod(ctx, filepath.Join(tmp, "go.mod"))
@@ -82,35 +82,35 @@ func main() {}
 		assert.True(t, found)
 		assert.GreaterOrEqual(t, semver.Compare(ver, "v1.74.0"), 0)
 
-		content, err := os.ReadFile(filepath.Join(tmp, config.FilenameOrchestrionToolGo))
+		content, err := os.ReadFile(filepath.Join(tmp, config.FilenameOrch8rionToolGo))
 		require.NoError(t, err)
 		assert.Contains(t, string(content), datadogTracerV2All)
 		assert.NotContains(t, string(content), datadogTracerV1)
 	})
 
 	t.Run("another-version", func(t *testing.T) {
-		tmp := scaffold(t, map[string]string{"github.com/DataDog/orchestrion": "v0.9.3"})
+		tmp := scaffold(t, map[string]string{"github.com/senforsce/orch8rion": "v0.9.3"})
 		chdir(t, tmp)
 
-		require.NoError(t, PinOrchestrion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}))
+		require.NoError(t, PinOrch8rion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}))
 
-		assert.FileExists(t, filepath.Join(tmp, config.FilenameOrchestrionToolGo))
+		assert.FileExists(t, filepath.Join(tmp, config.FilenameOrch8rionToolGo))
 		assert.FileExists(t, filepath.Join(tmp, "go.sum"))
 
 		data, err := parseGoMod(ctx, filepath.Join(tmp, "go.mod"))
 		require.NoError(t, err)
 
 		rawTag, _ := version.TagInfo()
-		assert.Contains(t, data.Require, goModRequire{"github.com/DataDog/orchestrion", rawTag})
+		assert.Contains(t, data.Require, goModRequire{"github.com/senforsce/orch8rion", rawTag})
 	})
 
 	t.Run("no-generate", func(t *testing.T) {
 		tmp := scaffold(t, make(map[string]string))
 		chdir(t, tmp)
 
-		require.NoError(t, PinOrchestrion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard, NoGenerate: true}))
+		require.NoError(t, PinOrch8rion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard, NoGenerate: true}))
 
-		content, err := os.ReadFile(filepath.Join(tmp, config.FilenameOrchestrionToolGo))
+		content, err := os.ReadFile(filepath.Join(tmp, config.FilenameOrch8rionToolGo))
 		require.NoError(t, err)
 
 		assert.NotContains(t, string(content), "//go:generate")
@@ -120,7 +120,7 @@ func main() {}
 		tmp := scaffold(t, map[string]string{"github.com/digitalocean/sample-golang": "v0.0.0-20240904143939-1e058723dcf4"})
 		chdir(t, tmp)
 
-		require.NoError(t, PinOrchestrion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard, NoGenerate: true}))
+		require.NoError(t, PinOrch8rion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard, NoGenerate: true}))
 
 		data, err := parseGoMod(ctx, filepath.Join(tmp, "go.mod"))
 		require.NoError(t, err)
@@ -135,7 +135,7 @@ func main() {}
 		})
 		chdir(t, tmp)
 
-		require.NoError(t, PinOrchestrion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard, NoGenerate: true}))
+		require.NoError(t, PinOrch8rion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard, NoGenerate: true}))
 
 		data, err := parseGoMod(ctx, filepath.Join(tmp, "go.mod"))
 		require.NoError(t, err)
@@ -148,19 +148,19 @@ func main() {}
 		tmp := scaffold(t, make(map[string]string))
 		chdir(t, tmp)
 
-		toolDotGo := filepath.Join(tmp, config.FilenameOrchestrionToolGo)
+		toolDotGo := filepath.Join(tmp, config.FilenameOrch8rionToolGo)
 		require.NoError(t, os.WriteFile(toolDotGo, nil, 0644))
 
-		require.ErrorContains(t, PinOrchestrion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}), "expected 'package', found 'EOF'")
+		require.ErrorContains(t, PinOrch8rion(ctx, Options{Writer: io.Discard, ErrWriter: io.Discard}), "expected 'package', found 'EOF'")
 	})
 }
 
-var goModTemplate = template.Must(template.New("go-mod").Parse(`module github.com/DataDog/orchestrion/pin-test
+var goModTemplate = template.Must(template.New("go-mod").Parse(`module github.com/senforsce/orch8rion/pin-test
 
 go {{ .GoVersion }}
 
 replace (
-	github.com/DataDog/orchestrion {{ .OrchestrionVersion }} => {{ .OrchestrionPath }}
+	github.com/senforsce/orch8rion {{ .Orch8rionVersion }} => {{ .Orch8rionPath }}
 )
 
 require (
@@ -194,17 +194,17 @@ func scaffold(t *testing.T, requires map[string]string) string {
 
 	rawTag, _ := version.TagInfo()
 	require.NoError(t, goModTemplate.Execute(goMod, struct {
-		GoVersion          string
-		OrchestrionVersion string
-		OrchestrionPath    string
-		PathSep            string
-		Require            map[string]string
+		GoVersion        string
+		Orch8rionVersion string
+		Orch8rionPath    string
+		PathSep          string
+		Require          map[string]string
 	}{
-		GoVersion:          runtime.Version()[2:6],
-		OrchestrionVersion: rawTag,
-		OrchestrionPath:    rootDir,
-		PathSep:            string(filepath.Separator),
-		Require:            requires,
+		GoVersion:        runtime.Version()[2:6],
+		Orch8rionVersion: rawTag,
+		Orch8rionPath:    rootDir,
+		PathSep:          string(filepath.Separator),
+		Require:          requires,
 	}))
 
 	return tmp

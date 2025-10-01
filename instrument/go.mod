@@ -1,12 +1,12 @@
-module github.com/DataDog/orchestrion/instrument
+module github.com/senforsce/orch8rion/instrument
 
 go 1.24.0
 
-replace github.com/DataDog/orchestrion => ..
+replace github.com/senforsce/orch8rion => ..
 
 require (
-	github.com/DataDog/dd-trace-go/orchestrion/all/v2 v2.2.3
-	github.com/DataDog/orchestrion v1.5.0
+	github.com/DataDog/dd-trace-go/orch8rion/all/v2 v2.2.3
+	github.com/senforsce/orch8rion v1.5.0
 )
 
 require (

@@ -16,7 +16,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/injector/parse"
+	"github.com/senforsce/orch8rion/internal/injector/parse"
 	"github.com/stretchr/testify/require"
 )
 
@@ -42,5 +42,5 @@ func TestNewerGoVersion(t *testing.T) {
 	}
 
 	_, err = injector.typeCheck(context.Background(), fset, []parse.File{{Name: "main.go", AstFile: astFile}})
-	require.ErrorContains(t, err, "please reinstall and pin orchestrion with a newer Go version")
+	require.ErrorContains(t, err, "please reinstall and pin orch8rion with a newer Go version")
 }

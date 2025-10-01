@@ -9,8 +9,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 func Unmarshal(ctx context.Context, node ast.Node) (key string, value ast.Node, err error) {

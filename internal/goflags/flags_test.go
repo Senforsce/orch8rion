@@ -96,14 +96,14 @@ func TestParse(t *testing.T) {
 		"cover": {
 			flags: []string{"run", "-cover", "-covermode=atomic"},
 			expected: CommandFlags{
-				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/DataDog/orchestrion/internal/goflags"},
+				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/senforsce/orch8rion/internal/goflags"},
 				Short: map[string]struct{}{"-cover": {}},
 			},
 		},
 		"covermode": {
 			flags: []string{"run", "-covermode=count"},
 			expected: CommandFlags{
-				Long:  map[string]string{"-covermode": "count", "-coverpkg": "github.com/DataDog/orchestrion/internal/goflags"},
+				Long:  map[string]string{"-covermode": "count", "-coverpkg": "github.com/senforsce/orch8rion/internal/goflags"},
 				Short: nil,
 			},
 		},
@@ -111,7 +111,7 @@ func TestParse(t *testing.T) {
 			flags:   []string{"run", "-cover", "-covermode=atomic", "--", "-some.go"},
 			goflags: "-coverpkg=std,./...",
 			expected: CommandFlags{
-				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "std,github.com/DataDog/orchestrion/internal/goflags,github.com/DataDog/orchestrion/internal/goflags/quoted"},
+				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "std,github.com/senforsce/orch8rion/internal/goflags,github.com/senforsce/orch8rion/internal/goflags/quoted"},
 				Short: map[string]struct{}{"-cover": {}},
 			},
 		},
@@ -119,7 +119,7 @@ func TestParse(t *testing.T) {
 			flags: []string{"-C", "..", "run", "-cover", "-covermode=atomic"},
 			expected: CommandFlags{
 				// Note - the "-C" flags has no effect at this stage, so it's expected coverpkg is this package.
-				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/DataDog/orchestrion/internal/goflags"},
+				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/senforsce/orch8rion/internal/goflags"},
 				Short: map[string]struct{}{"-cover": {}},
 			},
 		},
@@ -127,7 +127,7 @@ func TestParse(t *testing.T) {
 			flags: []string{"-C=..", "run", "-cover", "-covermode=atomic", "."},
 			expected: CommandFlags{
 				// Note - the "-C" flags has no effect at this stage, so it's expected coverpkg is this package.
-				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/DataDog/orchestrion/internal/goflags"},
+				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/senforsce/orch8rion/internal/goflags"},
 				Short: map[string]struct{}{"-cover": {}},
 			},
 		},
@@ -135,18 +135,18 @@ func TestParse(t *testing.T) {
 			flags:   []string{"run", "."},
 			goflags: "-cover -covermode=atomic -tags=integration '-toolexec=foo bar'",
 			expected: CommandFlags{
-				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/DataDog/orchestrion/internal/goflags", "-tags": "integration", "-toolexec": "foo bar"},
+				Long:  map[string]string{"-covermode": "atomic", "-coverpkg": "github.com/senforsce/orch8rion/internal/goflags", "-tags": "integration", "-toolexec": "foo bar"},
 				Short: map[string]struct{}{"-cover": {}},
 			},
 		},
 		"coverpkg-relative-with-goflags": {
 			flags:   []string{"test", "./...", "-timeout", "30m", "-cover", "-covermode=atomic", "-coverprofile=coverage.out", "-coverpkg", "./..."},
-			goflags: `"-toolexec=orchestrion toolexec"`,
+			goflags: `"-toolexec=orch8rion toolexec"`,
 			expected: CommandFlags{
 				Long: map[string]string{
 					"-covermode": "atomic",
-					"-coverpkg":  "github.com/DataDog/orchestrion/internal/goflags,github.com/DataDog/orchestrion/internal/goflags/quoted",
-					"-toolexec":  "orchestrion toolexec",
+					"-coverpkg":  "github.com/senforsce/orch8rion/internal/goflags,github.com/senforsce/orch8rion/internal/goflags/quoted",
+					"-toolexec":  "orch8rion toolexec",
 				},
 				Short:   map[string]struct{}{"-cover": {}},
 				Unknown: []string{"-timeout", "30m", "-coverprofile=coverage.out"},

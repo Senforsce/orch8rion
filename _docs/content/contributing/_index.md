@@ -17,6 +17,6 @@ Dive right into the following section to get started:
     link="introduction"
     title="Introduction"
     icon="play"
-    subtitle="Introduction to Orchestrion"
+    subtitle="Introduction to Orch8rion"
   >}}
 {{</cards>}}

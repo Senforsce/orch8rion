@@ -9,11 +9,11 @@ import (
 	"context"
 	"errors"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/advice"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/join"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/advice"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/join"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 // Aspect binds advice.Advice to a join.Point, effectively defining a complete

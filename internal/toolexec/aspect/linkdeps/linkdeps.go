@@ -16,9 +16,9 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/toolexec/importcfg"
 	"github.com/blakesmith/ar"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/toolexec/importcfg"
 )
 
 const (

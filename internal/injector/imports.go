@@ -11,11 +11,11 @@ import (
 	"slices"
 	"strconv"
 
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/may"
 	"github.com/dave/dst"
 	"github.com/dave/dst/dstutil"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/may"
 )
 
 // packageFilterAspects filters out aspects that imply imports not present in the import map and return a copy

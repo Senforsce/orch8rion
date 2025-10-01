@@ -14,12 +14,12 @@ import (
 	"path/filepath"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
-const FilenameOrchestrionYML = "orchestrion.yml"
+const FilenameOrch8rionYML = "orch8rion.yml"
 
 // loadYMLFile loads configuration from the specified directory.
 func (l *Loader) loadYMLFile(ctx context.Context, dir string, name string) (_ *configYML, err error) {

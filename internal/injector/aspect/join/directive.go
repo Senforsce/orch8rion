@@ -12,12 +12,12 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/may"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/dave/dst"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/may"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 type directive string

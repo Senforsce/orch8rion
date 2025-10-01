@@ -13,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 //line <generated>:1
-	__orchestrion_mongotrace "github.com/DataDog/dd-trace-go/contrib/go.mongodb.org/mongo-driver/v2/mongo"
+	__orch8rion_mongotrace "github.com/DataDog/dd-trace-go/contrib/go.mongodb.org/mongo-driver/v2/mongo"
 )
 
 //line samples/client/mongo.go:16
@@ -24,7 +24,7 @@ func mongoClient() {
 //line samples/client/mongo.go:18
 		options.Client().
 //line <generated>:1
-			SetMonitor(__orchestrion_mongotrace.NewMonitor()).
+			SetMonitor(__orch8rion_mongotrace.NewMonitor()).
 //line samples/client/mongo.go:18
 			ApplyURI("mongodb://localhost:27017")
 	client, err := mongo.Connect(ctx, opts)

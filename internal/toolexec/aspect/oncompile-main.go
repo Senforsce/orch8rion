@@ -18,10 +18,10 @@ import (
 	"strconv"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/toolexec/aspect/linkdeps"
-	"github.com/DataDog/orchestrion/internal/toolexec/importcfg"
-	"github.com/DataDog/orchestrion/internal/toolexec/proxy"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/toolexec/aspect/linkdeps"
+	"github.com/senforsce/orch8rion/internal/toolexec/importcfg"
+	"github.com/senforsce/orch8rion/internal/toolexec/proxy"
 )
 
 // SyntheticPackageName is the name of the synthetic package that will be created when the compilation of the main
@@ -125,7 +125,7 @@ func (w Weaver) OnCompileMain(ctx context.Context, cmd *proxy.CompileCommand) (e
 		fileAST.Imports[idx] = spec
 	}
 
-	genDir := filepath.Join(filepath.Dir(cmd.Flags.Output), "orchestrion", "src", SyntheticPackageName)
+	genDir := filepath.Join(filepath.Dir(cmd.Flags.Output), "orch8rion", "src", SyntheticPackageName)
 	genFile := filepath.Join(genDir, "link_deps_imports.go")
 	log.Trace().Str("path", genFile).Msg("Writing new blank imports source file")
 	if err := os.MkdirAll(genDir, 0o755); err != nil {

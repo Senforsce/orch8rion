@@ -11,10 +11,10 @@ import (
 	"go/types"
 	"sync"
 
-	"github.com/DataDog/orchestrion/internal/injector/typed"
 	"github.com/dave/dst"
 	"github.com/dave/dst/dstutil"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/injector/typed"
 )
 
 type AspectContext interface {

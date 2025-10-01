@@ -8,7 +8,7 @@ prev: /docs/dd-trace-go
 
 {{<callout emoji="⚠️">}}
 This page provides procedures you can follow to get insight into what happened
-during an `orchestrion`-managed build. Some of this information will be
+during an `orch8rion`-managed build. Some of this information will be
 incredibly helpful to our engineers to assist with bug reports. However, please
 be mindful that these files often contain details about your project such
 as parts of its source code, the names of some of the dependencies your code
@@ -21,13 +21,13 @@ all of this information privately instead.
 
 ## Preserving the work tree
 
-Orchestrion records data that can allow re-constructing all transformations that
+Orch8rion records data that can allow re-constructing all transformations that
 it applied to your source files within the `go build` work tree. By default, the
 `go` toolchain cleans up this directory at the end of a build, but passing the
 `-work` flag will cause it to preserve those directories for later inspection.
 
 ```console
-$ orchestrion go build -work ./...
+$ orch8rion go build -work ./...
 WORK=/tmp/go-build2455442813
 ```
 
@@ -37,9 +37,9 @@ sub-directories, each corresponding to one of the built `go` packages.
 
 ## Contents of the work tree
 
-When `orchestrion` injects code into a source file, it writes the complete
+When `orch8rion` injects code into a source file, it writes the complete
 modified file in the relevant package's stage directory, int the
-`orchestrion/src` sub-directory. If it modifies package import configurations,
+`orch8rion/src` sub-directory. If it modifies package import configurations,
 the original configuration file is preserved with a `.original` suffix.
 
 For example, this could look something like the following:
@@ -56,7 +56,7 @@ For example, this could look something like the following:
       {{<filetree/file name="importcfg.link.original">}}
     {{</filetree/folder>}}
     {{<filetree/folder name="b002">}}
-      {{<filetree/folder name="orchestrion">}}
+      {{<filetree/folder name="orch8rion">}}
         {{<filetree/folder name="src">}}
           {{<filetree/file name="server.go">}}
         {{</filetree/folder>}}
@@ -71,7 +71,7 @@ For example, this could look something like the following:
 {{</filetree/container>}}
 
 The contents of these files is human-readable, and you may inspect them to get
-an understanding of what happened, see if Orchestrion did anything unexpected.
+an understanding of what happened, see if Orch8rion did anything unexpected.
 If you find yourself unable to make sense of what you see in these files, our
 engineers will be happy to assist.
 
@@ -79,9 +79,9 @@ engineers will be happy to assist.
 
 ### Configuring Log Level
 
-Orchestrion can be configured to output extensive logging during operations.
+Orch8rion can be configured to output extensive logging during operations.
 This is configured by setting the `ORCHESTRION_LOG_LEVEL` environment variable
-or `--log-level` orchestrion flag to one of the following values:
+or `--log-level` orch8rion flag to one of the following values:
 
 `ORCHESTRION_LOG_LEVEL` | Description
 ------------------------|-------------------------------------------------------
@@ -103,7 +103,7 @@ these settings during normal operations.
 By default, logging messages are sent to the process' console. It can however be
 useful to instead send those messages to one or more files, as these can be
 easier to investigate after the fact. To do so, set the `ORCHESTRION_LOG_FILE`
-environment variable or `--log-file` orchestrion flag to the path of the file to
+environment variable or `--log-file` orch8rion flag to the path of the file to
 write logs to.
 
 {{<callout type="info">}}
@@ -121,17 +121,17 @@ clobbering it.
 
 ## Internal Tracing
 
-Orchestrion itself is built using the Datadog Tracing library for Go. This means
+Orch8rion itself is built using the Datadog Tracing library for Go. This means
 that it can be configured to emit traces that can be collected by a Datadog
 Agent and sent to a Datadog backend for analysis.
 
 If you have performances concerns. Using the environment variable
 `ORCHESTRION_TRACE=true` and running alongside a Datadog Agent will make
-multiple services that belong to the different components of Orchestrion appear
+multiple services that belong to the different components of Orch8rion appear
 in the Datadog APM UI.
 
 {{<callout emoji="⚠️">}}
 This data is hard to interpret without a good understanding of the internals of
-Orchestrion and the Go toolchain. Please make sure to engage with Datadog support
+Orch8rion and the Go toolchain. Please make sure to engage with Datadog support
 if you need help interpreting this data.
 {{</callout>}}

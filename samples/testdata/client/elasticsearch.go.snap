@@ -14,7 +14,7 @@ import (
 	esv7 "github.com/elastic/go-elasticsearch/v7"
 	esv8 "github.com/elastic/go-elasticsearch/v8"
 //line <generated>:1
-	__orchestrion_elastictrace "github.com/DataDog/dd-trace-go/contrib/elastic/go-elasticsearch.v6/v2"
+	__orch8rion_elastictrace "github.com/DataDog/dd-trace-go/contrib/elastic/go-elasticsearch.v6/v2"
 )
 
 //line samples/client/elasticsearch.go:17
@@ -32,10 +32,10 @@ func SampleGoElasticsearch() {
 //line <generated>:1
 		func(cfg esv6.Config) esv6.Config {
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -45,10 +45,10 @@ func SampleGoElasticsearch() {
 //line <generated>:1
 		func(cfg esv6.Config) esv6.Config {
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -66,10 +66,10 @@ func SampleGoElasticsearch() {
 				return cfg
 			}
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -83,10 +83,10 @@ func SampleGoElasticsearch() {
 				return cfg
 			}
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -104,10 +104,10 @@ func SampleGoElasticsearch() {
 				return cfg
 			}
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -121,10 +121,10 @@ func SampleGoElasticsearch() {
 				return cfg
 			}
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -140,10 +140,10 @@ func SampleGoElasticsearch() {
 				return cfg
 			}
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -157,10 +157,10 @@ func SampleGoElasticsearch() {
 				return cfg
 			}
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(
@@ -177,10 +177,10 @@ func SampleGoElasticsearch() {
 				return cfg
 			}
 			if cfg.Transport == nil {
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper()
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper()
 			} else {
 				base := cfg.Transport
-				cfg.Transport = __orchestrion_elastictrace.NewRoundTripper(__orchestrion_elastictrace.WithTransport(base))
+				cfg.Transport = __orch8rion_elastictrace.NewRoundTripper(__orch8rion_elastictrace.WithTransport(base))
 			}
 			return cfg
 		}(

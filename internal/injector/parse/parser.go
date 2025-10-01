@@ -17,8 +17,8 @@ import (
 	"sync/atomic"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/may"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/may"
 	"golang.org/x/sync/errgroup"
 )
 

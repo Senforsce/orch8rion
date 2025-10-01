@@ -11,7 +11,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 //line <generated>:1
-	__orchestrion_echotrace "github.com/DataDog/dd-trace-go/contrib/labstack/echo.v4/v2"
+	__orch8rion_echotrace "github.com/DataDog/dd-trace-go/contrib/labstack/echo.v4/v2"
 )
 
 //line samples/server/echov4.go:14
@@ -23,7 +23,7 @@ func echoV4Server() {
 //line samples/server/echov4.go:15
 				echo.New()
 //line <generated>:1
-			e.Use(__orchestrion_echotrace.Middleware())
+			e.Use(__orch8rion_echotrace.Middleware())
 			return e
 		}()
 //line samples/server/echov4.go:16
@@ -47,7 +47,7 @@ func (a *api) echoV4Server() {
 //line samples/server/echov4.go:29
 				echo.New()
 //line <generated>:1
-			e.Use(__orchestrion_echotrace.Middleware())
+			e.Use(__orch8rion_echotrace.Middleware())
 			return e
 		}()
 //line samples/server/echov4.go:30

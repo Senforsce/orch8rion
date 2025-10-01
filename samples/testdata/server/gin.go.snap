@@ -11,7 +11,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 //line <generated>:1
-	__orchestrion_gintrace "github.com/DataDog/dd-trace-go/contrib/gin-gonic/gin/v2"
+	__orch8rion_gintrace "github.com/DataDog/dd-trace-go/contrib/gin-gonic/gin/v2"
 )
 
 //line samples/server/gin.go:14
@@ -23,7 +23,7 @@ func ginServer() {
 //line samples/server/gin.go:15
 				gin.Default()
 //line <generated>:1
-			e.Use(__orchestrion_gintrace.Middleware(""))
+			e.Use(__orch8rion_gintrace.Middleware(""))
 			return e
 		}()
 //line samples/server/gin.go:16

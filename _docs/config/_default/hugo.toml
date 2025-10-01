@@ -1,6 +1,6 @@
-baseURL = 'https://datadoghq.dev/orchestrion/'
+baseURL = 'https://datadoghq.dev/orch8rion/'
 languageCode = 'en-us'
-title = 'Orchestrion'
+title = 'Orch8rion'
 theme = 'hextra'
 
 enableRobotsTXT = true
@@ -29,7 +29,7 @@ params = { type = 'search' }
 
 [[menu.main]]
 name = 'Source'
-url = 'https://github.com/DataDog/orchestrion'
+url = 'https://github.com/senforsce/orch8rion'
 weight = 999
 params = { icon = 'github' }
 
@@ -51,7 +51,7 @@ dateFormat = '2006-02-01'
 
 [params.editURL]
 enable = true
-base = 'https://github.com/DataDog/orchestrion/edit/main/_docs/content'
+base = 'https://github.com/senforsce/orch8rion/edit/main/_docs/content'
 
 [params.footer]
 displayCopyright = true
@@ -62,7 +62,7 @@ width = 'normal'
 displayTitle = true
 displayLogo = true
 [params.navbar.logo]
-link = '/orchestrion'
+link = '/orch8rion'
 path = 'images/logo.png'
 dark = 'images/logo-dark.png'
 height = 42

@@ -12,11 +12,11 @@ references to the matched node.
 
 ### Template Syntax
 
-Orchestrion code templates are rendered using the Go standard library
+Orch8rion code templates are rendered using the Go standard library
 {{<godoc import-path="text/template">}} module. Refer to the module's documentation to learn
 about the general syntax of these template values.
 
-In addition to the template text, Orchestrion code templates allow for an
+In addition to the template text, Orch8rion code templates allow for an
 additional `imports` configuration objects as well as an optional `lang` value.
 
 ### Imports
@@ -53,7 +53,7 @@ will then break the compilation step.
 
 Setting `lang: go1.18` for example allows the use of Go generics even when
 injecting packages that allow for really old Go toolchains to be used
-(orchestrion is more strict, as it only supports recent toolchains).
+(orch8rion is more strict, as it only supports recent toolchains).
 
 If unspecified, no particular language requirement is imposed, so the language
 level specified by the currently compiled module's `go.mod` file will be used.
@@ -72,26 +72,26 @@ template: |-
 
 This section documents what functions are available for use in template text, as
 well as what the `.` context value represents, and which methods are
-available for use on it. These are essential for authoring Orchestrion code
+available for use on it. These are essential for authoring Orch8rion code
 templates.
 
 ### The `Version` function
 
-The simple `Version` function returns the version of Orchestrion being used, as
+The simple `Version` function returns the version of Orch8rion being used, as
 represented by the version tag name.
 
 * Given:
   ```go-template
-  fmt.Println("Orchestrion version is: {{ Version }}")
+  fmt.Println("Orch8rion version is: {{ Version }}")
   ```
 * The output would look like:
   ```go
-  fmt.Println("Orchestrion version is: v0.7.3")
+  fmt.Println("Orch8rion version is: v0.7.3")
   ```
 
 ### The value of `.`
 
-In orchestrion code templates, `.` is a value that represents information about
+In orch8rion code templates, `.` is a value that represents information about
 the node matched by the *join point* that led to evaluation of the current
 *advice*.
 

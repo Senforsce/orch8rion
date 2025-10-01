@@ -8,9 +8,9 @@
 package join
 
 import (
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/may"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/may"
 )
 
 // Point is the interface that abstracts selection of nodes where to inject

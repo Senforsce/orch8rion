@@ -4,11 +4,11 @@ subtitle: {{ .PkgPath }}
 ---
 {{ $single := eq (len .Files) 1 }}
 Those integration{{ if not $single }}s{{ end }} are enabled by having the
-following `import` in the project's `orchestrion.tool.go` file:
+following `import` in the project's `orch8rion.tool.go` file:
 
 ```go
 import (
-	_ "github.com/DataDog/orchestrion"
+	_ "github.com/senforsce/orch8rion"
 
 	_ "{{ .PkgPath }}" // integration
 	//...

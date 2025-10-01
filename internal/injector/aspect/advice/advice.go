@@ -8,8 +8,8 @@
 package advice
 
 import (
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
 )
 
 // Advice is the interface abstracting actual AST changes performed by

@@ -16,8 +16,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/goenv"
-	"github.com/DataDog/orchestrion/internal/version"
+	"github.com/senforsce/orch8rion/internal/goenv"
+	"github.com/senforsce/orch8rion/internal/version"
 	"github.com/stretchr/testify/require"
 	"golang.org/x/mod/semver"
 )
@@ -32,7 +32,7 @@ func TestGoModVersion(t *testing.T) {
 	for name, test := range map[string]test{
 		"happy":    {version: "v0.9.0"},
 		"replaced": {version: "v0.9.0", replace: true},
-		"missing":  {err: fmt.Errorf("no required module provides package %s", orchestrionPkgPath)},
+		"missing":  {err: fmt.Errorf("no required module provides package %s", orch8rionPkgPath)},
 	} {
 		t.Run(name, func(t *testing.T) {
 			if !test.replace && test.version != "" && semver.Compare(test.version, version.Tag()) >= 0 {
@@ -52,14 +52,14 @@ func TestGoModVersion(t *testing.T) {
 				"",
 			}
 			if test.version != "" {
-				goMod = append(goMod, fmt.Sprintf("require %s %s", orchestrionPkgPath, test.version), "")
+				goMod = append(goMod, fmt.Sprintf("require %s %s", orch8rionPkgPath, test.version), "")
 				require.NoError(t,
-					os.WriteFile(filepath.Join(tmp, "tools.go"), []byte(fmt.Sprintf("//go:build tools\npackage tools\n\nimport _ %q\n", orchestrionPkgPath)), 0o644),
+					os.WriteFile(filepath.Join(tmp, "tools.go"), []byte(fmt.Sprintf("//go:build tools\npackage tools\n\nimport _ %q\n", orch8rionPkgPath)), 0o644),
 					"failed to write tools.go",
 				)
 			}
 			if test.replace {
-				goMod = append(goMod, fmt.Sprintf("replace %s => %s", orchestrionPkgPath, orchestrionSrcDir), "")
+				goMod = append(goMod, fmt.Sprintf("replace %s => %s", orch8rionPkgPath, orch8rionSrcDir), "")
 			}
 
 			require.NoError(t, os.WriteFile(filepath.Join(tmp, "go.mod"), []byte(strings.Join(goMod, "\n")), 0o644), "failed to write go.mod file")
@@ -78,7 +78,7 @@ func TestGoModVersion(t *testing.T) {
 			require.NoError(t, err)
 			if test.replace {
 				require.Empty(t, rVersion)
-				require.Equal(t, orchestrionSrcDir, rDir)
+				require.Equal(t, orch8rionSrcDir, rDir)
 			} else {
 				require.Equal(t, test.version, rVersion)
 				// In this case, the source tree will be in the GOMODCACHE directory.
@@ -124,7 +124,7 @@ func TestRequiredVersion(t *testing.T) {
 			expected:     nil,
 		},
 		"happy path, replaced to this": {
-			goModVersion: goModVersionResult{path: orchestrionSrcDir},
+			goModVersion: goModVersionResult{path: orch8rionSrcDir},
 			expected:     nil,
 		},
 		"go.mod failure": {
@@ -140,7 +140,7 @@ func TestRequiredVersion(t *testing.T) {
 			expected:     IncorrectVersionError{RequiredVersion: ""},
 		},
 		"replaced to a different path": {
-			goModVersion: goModVersionResult{path: "/phony/orchestrion/path"},
+			goModVersion: goModVersionResult{path: "/phony/orch8rion/path"},
 			expected:     IncorrectVersionError{RequiredVersion: ""},
 		},
 	} {

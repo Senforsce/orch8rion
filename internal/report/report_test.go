@@ -12,8 +12,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/toolexec/aspect"
 	"github.com/liamg/memoryfs"
+	"github.com/senforsce/orch8rion/internal/toolexec/aspect"
 )
 
 func TestFromWorkFS(t *testing.T) {
@@ -34,13 +34,13 @@ func TestFromWorkFS(t *testing.T) {
 			name: "no-line-directive",
 			args: func() fs.FS {
 				fsys := memoryfs.New()
-				fsys.MkdirAll(filepath.Join("b001", aspect.OrchestrionDirPathElement, "foo"), 0755)
-				fsys.WriteFile(filepath.Join("b001", aspect.OrchestrionDirPathElement, "foo", "bar.go"), []byte("package foo\nfunc Bar() {}"), 0644)
+				fsys.MkdirAll(filepath.Join("b001", aspect.Orch8rionDirPathElement, "foo"), 0755)
+				fsys.WriteFile(filepath.Join("b001", aspect.Orch8rionDirPathElement, "foo", "bar.go"), []byte("package foo\nfunc Bar() {}"), 0644)
 				return fsys
 			}(),
 			want: []ModifiedFile{
 				{
-					modified: filepath.Join("b001", aspect.OrchestrionDirPathElement, "foo", "bar.go"),
+					modified: filepath.Join("b001", aspect.Orch8rionDirPathElement, "foo", "bar.go"),
 				},
 			},
 		},
@@ -48,13 +48,13 @@ func TestFromWorkFS(t *testing.T) {
 			name: "simple",
 			args: func() fs.FS {
 				fsys := memoryfs.New()
-				fsys.MkdirAll(filepath.Join("b001", aspect.OrchestrionDirPathElement, "foo"), 0755)
-				fsys.WriteFile(filepath.Join("b001", aspect.OrchestrionDirPathElement, "foo", "bar.go"), []byte("//line foo/bar.go\npackage foo\nfunc Bar() {}"), 0644)
+				fsys.MkdirAll(filepath.Join("b001", aspect.Orch8rionDirPathElement, "foo"), 0755)
+				fsys.WriteFile(filepath.Join("b001", aspect.Orch8rionDirPathElement, "foo", "bar.go"), []byte("//line foo/bar.go\npackage foo\nfunc Bar() {}"), 0644)
 				return fsys
 			}(),
 			want: []ModifiedFile{
 				{
-					modified: filepath.Join("b001", aspect.OrchestrionDirPathElement, "foo", "bar.go"),
+					modified: filepath.Join("b001", aspect.Orch8rionDirPathElement, "foo", "bar.go"),
 					original: filepath.Join("foo", "bar.go"),
 				},
 			},
@@ -63,13 +63,13 @@ func TestFromWorkFS(t *testing.T) {
 			name: "sample",
 			args: func() fs.FS {
 				fsys := memoryfs.New()
-				fsys.MkdirAll(filepath.Join("b001", aspect.OrchestrionDirPathElement, "github.com", "DataDog", "test"), 0755)
-				fsys.WriteFile(filepath.Join("b001", aspect.OrchestrionDirPathElement, "github.com", "DataDog", "test", "bar.go"), []byte("//line /home/test/go/pkg/mod/github.com/!data!dog/test/bar.go\n"), 0644)
+				fsys.MkdirAll(filepath.Join("b001", aspect.Orch8rionDirPathElement, "github.com", "DataDog", "test"), 0755)
+				fsys.WriteFile(filepath.Join("b001", aspect.Orch8rionDirPathElement, "github.com", "DataDog", "test", "bar.go"), []byte("//line /home/test/go/pkg/mod/github.com/!data!dog/test/bar.go\n"), 0644)
 				return fsys
 			}(),
 			want: []ModifiedFile{
 				{
-					modified: filepath.Join("b001", aspect.OrchestrionDirPathElement, "github.com", "DataDog", "test", "bar.go"),
+					modified: filepath.Join("b001", aspect.Orch8rionDirPathElement, "github.com", "DataDog", "test", "bar.go"),
 					original: filepath.Join("/home", "test", "go", "pkg", "mod", "github.com", "!data!dog", "test", "bar.go"),
 				},
 			},
@@ -78,18 +78,18 @@ func TestFromWorkFS(t *testing.T) {
 			name: "multiple-files",
 			args: func() fs.FS {
 				fsys := memoryfs.New()
-				fsys.MkdirAll(filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg"), 0755)
-				fsys.WriteFile(filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "file1.go"), []byte("//line pkg/file1.go\npackage pkg\nfunc File1() {}"), 0644)
-				fsys.WriteFile(filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "file2.go"), []byte("//line pkg/file2.go\npackage pkg\nfunc File2() {}"), 0644)
+				fsys.MkdirAll(filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg"), 0755)
+				fsys.WriteFile(filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "file1.go"), []byte("//line pkg/file1.go\npackage pkg\nfunc File1() {}"), 0644)
+				fsys.WriteFile(filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "file2.go"), []byte("//line pkg/file2.go\npackage pkg\nfunc File2() {}"), 0644)
 				return fsys
 			}(),
 			want: []ModifiedFile{
 				{
-					modified: filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "file1.go"),
+					modified: filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "file1.go"),
 					original: filepath.Join("pkg", "file1.go"),
 				},
 				{
-					modified: filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "file2.go"),
+					modified: filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "file2.go"),
 					original: filepath.Join("pkg", "file2.go"),
 				},
 			},
@@ -98,13 +98,13 @@ func TestFromWorkFS(t *testing.T) {
 			name: "missing-original-path",
 			args: func() fs.FS {
 				fsys := memoryfs.New()
-				fsys.MkdirAll(filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg"), 0755)
-				fsys.WriteFile(filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "file.go"), []byte("package pkg\nfunc File() {}"), 0644)
+				fsys.MkdirAll(filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg"), 0755)
+				fsys.WriteFile(filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "file.go"), []byte("package pkg\nfunc File() {}"), 0644)
 				return fsys
 			}(),
 			want: []ModifiedFile{
 				{
-					modified: filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "file.go"),
+					modified: filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "file.go"),
 				},
 			},
 		},
@@ -112,13 +112,13 @@ func TestFromWorkFS(t *testing.T) {
 			name: "nested-directories",
 			args: func() fs.FS {
 				fsys := memoryfs.New()
-				fsys.MkdirAll(filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "subpkg"), 0755)
-				fsys.WriteFile(filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "subpkg", "file.go"), []byte("//line pkg/subpkg/file.go\npackage subpkg\nfunc File() {}"), 0644)
+				fsys.MkdirAll(filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "subpkg"), 0755)
+				fsys.WriteFile(filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "subpkg", "file.go"), []byte("//line pkg/subpkg/file.go\npackage subpkg\nfunc File() {}"), 0644)
 				return fsys
 			}(),
 			want: []ModifiedFile{
 				{
-					modified: filepath.Join("b001", aspect.OrchestrionDirPathElement, "pkg", "subpkg", "file.go"),
+					modified: filepath.Join("b001", aspect.Orch8rionDirPathElement, "pkg", "subpkg", "file.go"),
 					original: filepath.Join("pkg", "subpkg", "file.go"),
 				},
 			},

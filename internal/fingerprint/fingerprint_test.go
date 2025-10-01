@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
 	"github.com/stretchr/testify/require"
 )
 

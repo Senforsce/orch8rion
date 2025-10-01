@@ -1,4 +1,4 @@
-module github.com/DataDog/orchestrion/_tools
+module github.com/senforsce/orch8rion/_tools
 
 go 1.24.0
 

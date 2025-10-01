@@ -18,17 +18,17 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
 	"golang.org/x/tools/go/packages"
 )
 
-const FilenameOrchestrionToolGo = "orchestrion.tool.go"
+const FilenameOrch8rionToolGo = "orch8rion.tool.go"
 
 var ErrInvalidGoPackage = errors.New("no .go files in package")
 
 // loadGoPackage loads configuration from the specified go package.
 func (l *Loader) loadGoPackage(ctx context.Context, pkg *packages.Package) (_ *configGo, err error) {
-	// Special-case the `github.com/DataDog/orchestrion` package, we need not
+	// Special-case the `github.com/senforsce/orch8rion` package, we need not
 	// parse this one, and should always use the built-in object.
 	if pkg.PkgPath == builtIn.pkgPath {
 		return &builtIn, nil
@@ -49,7 +49,7 @@ func (l *Loader) loadGoPackage(ctx context.Context, pkg *packages.Package) (_ *c
 			for _, e := range pkg.Errors {
 				var innerErr error = e
 				if e.Kind == packages.ListError && strings.Contains(e.Msg, "no Go files in") { // Workaround poor error typing in packages.Load
-					innerErr = fmt.Errorf("no Go files found, was expecting at least orchestrion.tool.go: %w", e)
+					innerErr = fmt.Errorf("no Go files found, was expecting at least orch8rion.tool.go: %w", e)
 				}
 				err = errors.Join(err, innerErr)
 			}
@@ -59,13 +59,13 @@ func (l *Loader) loadGoPackage(ctx context.Context, pkg *packages.Package) (_ *c
 		return nil, fmt.Errorf("%q: %w", pkg.PkgPath, ErrInvalidGoPackage)
 	}
 
-	toolFile := filepath.Join(root, FilenameOrchestrionToolGo)
+	toolFile := filepath.Join(root, FilenameOrch8rionToolGo)
 	imports, err := l.loadGoFile(ctx, toolFile)
 	if err != nil && !errors.Is(err, fs.ErrNotExist) {
 		return nil, err
 	}
 
-	ymlCfg, err := l.loadYMLFile(ctx, root, FilenameOrchestrionYML)
+	ymlCfg, err := l.loadYMLFile(ctx, root, FilenameOrch8rionYML)
 	if err != nil && !errors.Is(err, fs.ErrNotExist) {
 		return nil, err
 	}

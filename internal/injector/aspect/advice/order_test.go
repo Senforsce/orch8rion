@@ -8,8 +8,8 @@ package advice
 import (
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

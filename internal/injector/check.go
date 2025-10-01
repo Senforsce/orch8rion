@@ -16,7 +16,7 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/injector/parse"
+	"github.com/senforsce/orch8rion/internal/injector/parse"
 )
 
 // typeCheck runs the Go type checker on the provided files, and returns the
@@ -48,7 +48,7 @@ func (i *Injector) typeCheck(ctx context.Context, fset *token.FileSet, files []p
 		// TODO: Ask better error typing from the Go team for the go/types package
 		if strings.Contains(err.Error(), "package requires newer Go version") {
 			// Not returning a type-checking error here, as this error we want to surface directly to the user ourselves.
-			return types.Info{}, fmt.Errorf("orchestrion was built with Go version %s but package %q requires a newer go version, please reinstall and pin orchestrion with a newer Go version: type-checking files: %w", runtime.Version(), i.ImportPath, err)
+			return types.Info{}, fmt.Errorf("orch8rion was built with Go version %s but package %q requires a newer go version, please reinstall and pin orch8rion with a newer Go version: type-checking files: %w", runtime.Version(), i.ImportPath, err)
 		}
 
 		return types.Info{}, typeCheckingError{cause: err}

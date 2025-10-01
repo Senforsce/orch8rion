@@ -5,13 +5,13 @@ weight: 10
 ---
 
 This document privdes guidelines for contributors writing new *Aspects* into
-`orchestrion`. Aspect authors should try to adhere to those as much as possible,
+`orch8rion`. Aspect authors should try to adhere to those as much as possible,
 as code reviewers may push back on aspect contributions that diverge without a
 clear reason.
 
 ## Only use exported APIs
 
-While Orchestrion naturally has interest in instrumenting code *everywhere*,
+While Orch8rion naturally has interest in instrumenting code *everywhere*,
 including in private and `/internal/` code, it should avoid doing so by
 leveraging private or `/internal/` APIs from the instrumentation libraries as
 much as possible.
@@ -52,4 +52,4 @@ some examples follow:
 
 Avoid copying code across from the instrumentation libraries as much as
 possible. Ideally, contribute refactors to the library in order to make it
-easier to re-use code in the library's *integrations* in Orchestrion.
+easier to re-use code in the library's *integrations* in Orch8rion.

@@ -12,19 +12,19 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/DataDog/orchestrion/internal/jobserver"
-	"github.com/DataDog/orchestrion/internal/jobserver/buildid"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/toolexec/proxy"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/jobserver"
+	"github.com/senforsce/orch8rion/internal/jobserver/buildid"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/toolexec/proxy"
 )
 
 // ComputeVersion returns the complete version string to be produced when the toolexec is invoked
 // with `-V=full`. This invocation is used by the go toolchain to determine the complete build ID,
 // ensuring the artifact cache objects are invalidated when anything in the build tooling changes.
 //
-// Orchestrion inserts information about itself in the string, so that we also bust cache entries if:
-// - the orchestrion binary is different (instrumentation process may have changed)
+// Orch8rion inserts information about itself in the string, so that we also bust cache entries if:
+// - the orch8rion binary is different (instrumentation process may have changed)
 // - the injector configuration is different
 // - injected dependencies versions are different
 func ComputeVersion(ctx context.Context, cmd proxy.Command) (string, error) {

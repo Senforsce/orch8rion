@@ -14,17 +14,17 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/DataDog/orchestrion/internal/files"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/jobserver/nbt"
-	"github.com/DataDog/orchestrion/internal/toolexec/aspect/linkdeps"
-	"github.com/DataDog/orchestrion/internal/toolexec/importcfg"
 	"github.com/blakesmith/ar"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/files"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/jobserver/nbt"
+	"github.com/senforsce/orch8rion/internal/toolexec/aspect/linkdeps"
+	"github.com/senforsce/orch8rion/internal/toolexec/importcfg"
 )
 
-//go:generate go run github.com/DataDog/orchestrion/internal/toolexec/proxy/generator -command=compile
+//go:generate go run github.com/senforsce/orch8rion/internal/toolexec/proxy/generator -command=compile
 
 type compileFlagSet struct {
 	Asmhdr      string `ddflag:"-asmhdr"`
@@ -156,9 +156,9 @@ func (cmd *CompileCommand) attachLinkDeps(ctx gocontext.Context) error {
 		return err
 	}
 
-	orchestrionDir := filepath.Join(cmd.Flags.Output, "..", "orchestrion")
-	if err := os.MkdirAll(orchestrionDir, 0o755); err != nil {
-		return fmt.Errorf("mkdir %q: %w", orchestrionDir, err)
+	orch8rionDir := filepath.Join(cmd.Flags.Output, "..", "orch8rion")
+	if err := os.MkdirAll(orch8rionDir, 0o755); err != nil {
+		return fmt.Errorf("mkdir %q: %w", orch8rionDir, err)
 	}
 
 	var buf bytes.Buffer

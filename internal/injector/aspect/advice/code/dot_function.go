@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"go/types"
 
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/injector/typed"
 	"github.com/dave/dst"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/injector/typed"
 )
 
 type (

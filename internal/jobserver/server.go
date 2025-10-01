@@ -15,14 +15,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/DataDog/orchestrion/internal/jobserver/buildid"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/jobserver/common"
-	"github.com/DataDog/orchestrion/internal/jobserver/nbt"
-	"github.com/DataDog/orchestrion/internal/jobserver/pkgs"
 	"github.com/nats-io/nats-server/v2/server"
 	"github.com/nats-io/nats.go"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/jobserver/buildid"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/jobserver/common"
+	"github.com/senforsce/orch8rion/internal/jobserver/nbt"
+	"github.com/senforsce/orch8rion/internal/jobserver/pkgs"
 )
 
 const (
@@ -95,7 +95,7 @@ func New(ctx context.Context, opts *Options) (srv *Server, err error) {
 	systemAccount := server.NewAccount("SYS")
 
 	server, err := server.NewServer(&server.Options{
-		ServerName: fmt.Sprintf("github.com/DataDog/orchestrion/internal/jobserver[%d]", os.Getpid()),
+		ServerName: fmt.Sprintf("github.com/senforsce/orch8rion/internal/jobserver[%d]", os.Getpid()),
 		Host:       getLoopback(log),
 		Port:       port,
 		DontListen: opts.NoListener,
@@ -332,7 +332,7 @@ func getLoopback(log zerolog.Logger) string {
 	getLoopbackOnce.Do(func() {
 		addrs, err := net.InterfaceAddrs()
 		if err != nil {
-			log.Warn().Err(err).Msg("Could not determine list of network interface addresses. Orchestrion requires at least one loopback interface to be available.")
+			log.Warn().Err(err).Msg("Could not determine list of network interface addresses. Orch8rion requires at least one loopback interface to be available.")
 			return
 		}
 		for _, addr := range addrs {

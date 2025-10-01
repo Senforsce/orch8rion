@@ -9,8 +9,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/DataDog/orchestrion/internal/injector/singleton"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/injector/singleton"
 )
 
 type unmarshalerFn func(context.Context, ast.Node) (Advice, error)

@@ -6,27 +6,27 @@
 package config
 
 import (
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/advice"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/advice/code"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/join"
-	"github.com/DataDog/orchestrion/internal/injector/typed"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/advice"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/advice/code"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/join"
+	"github.com/senforsce/orch8rion/internal/injector/typed"
 )
 
 var builtIn = configGo{
-	pkgPath: "github.com/DataDog/orchestrion",
+	pkgPath: "github.com/senforsce/orch8rion",
 	yaml: &configYML{
 		aspects: []*aspect.Aspect{
 			{
-				ID:             "built.WithOrchestrion",
+				ID:             "built.WithOrch8rion",
 				TracerInternal: true, // This is safe to apply in the tracer itself
 				JoinPoint: join.AllOf(
 					join.ValueDeclaration(typed.Bool),
 					join.OneOf(
-						join.DeclarationOf("github.com/DataDog/orchestrion/runtime/built", "WithOrchestrion"),
-						join.Directive("orchestrion:enabled"),
-						join.Directive("dd:orchestrion-enabled"), // <- Deprecated
+						join.DeclarationOf("github.com/senforsce/orch8rion/runtime/built", "WithOrch8rion"),
+						join.Directive("orch8rion:enabled"),
+						join.Directive("dd:orch8rion-enabled"), // <- Deprecated
 					),
 				),
 				Advice: []advice.Advice{
@@ -36,13 +36,13 @@ var builtIn = configGo{
 				},
 			},
 			{
-				ID:             "built.WithOrchestrionVersion",
+				ID:             "built.WithOrch8rionVersion",
 				TracerInternal: true, // This is safe to apply in the tracer itself
 				JoinPoint: join.AllOf(
 					join.ValueDeclaration(typed.String),
 					join.OneOf(
-						join.DeclarationOf("github.com/DataDog/orchestrion/runtime/built", "WithOrchestrionVersion"),
-						join.Directive("orchestrion:version"),
+						join.DeclarationOf("github.com/senforsce/orch8rion/runtime/built", "WithOrch8rionVersion"),
+						join.Directive("orch8rion:version"),
 					),
 				),
 				Advice: []advice.Advice{
@@ -54,11 +54,11 @@ var builtIn = configGo{
 		},
 		name: "<built-in>",
 		meta: configYMLMeta{
-			name:        "github.com/DataDog/orchestrion/built & //orchestrion: pragmas",
-			description: "Provide runtime visibility into whether orchestrion built an application or not",
+			name:        "github.com/senforsce/orch8rion/built & //orch8rion: pragmas",
+			description: "Provide runtime visibility into whether orch8rion built an application or not",
 			icon:        "cog",
 			caveats: "This aspect allows introducing conditional logic based on whether" +
-				"Orchestrion has been used to instrument an application or not. This should" +
+				"Orch8rion has been used to instrument an application or not. This should" +
 				"generally be avoided, but can be useful to ensure the application (or tests)" +
 				"is running with instrumentation.",
 		},

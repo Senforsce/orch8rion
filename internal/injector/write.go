@@ -13,10 +13,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/DataDog/orchestrion/internal/injector/lineinfo"
 	"github.com/dave/dst"
 	"github.com/dave/dst/decorator"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/injector/lineinfo"
 )
 
 // writeModifiedFile writes the modified file to disk after having restored it to Go source code,

@@ -4,19 +4,19 @@ package test
 import (
   "database/sql"
 //line <generated>:1
-  __orchestrion_driver "database/sql/driver"
-  __orchestrion_sqltrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/database/sql"
+  __orch8rion_driver "database/sql/driver"
+  __orch8rion_sqltrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/database/sql"
 )
 
 //line input.go:8
-var conn __orchestrion_driver.Connector
+var conn __orch8rion_driver.Connector
 
 func main() {
   var driver string // shadowing import
 //line <generated>:1
-  func(driverName string, driver __orchestrion_driver.Driver) {
+  func(driverName string, driver __orch8rion_driver.Driver) {
     sql.Register(driverName, driver)
-    __orchestrion_sqltrace.Register(driverName, driver)
+    __orch8rion_sqltrace.Register(driverName, driver)
   }(
 //line input.go:12
     "foo", nil)

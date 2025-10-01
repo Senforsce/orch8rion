@@ -5,12 +5,12 @@ prev: /docs/dd-trace-go/features
 next: /docs/troubleshooting
 ---
 
-Orchestrion offers several ways to control the traces produced by instrumented
+Orch8rion offers several ways to control the traces produced by instrumented
 applications.
 
 ## Prevent instrumentation of a section of code
 
-By default, `orchestrion` injects instrumentation _everywhere_ possible. This
+By default, `orch8rion` injects instrumentation _everywhere_ possible. This
 ensures users get the maximum possible coverage from their applications, as it
 removes the possibility of someone forgetting to instrument a particular call.
 
@@ -18,12 +18,12 @@ There are however cases where you may want specific sections of your application
 to not be instrumented, either because they result in excessively verbose
 traces, or because those trace spans would be duplicated.
 
-The `//orchestrion:ignore` directive can be added anywhere in your application's
-code, and will disable all `orchestrion` instrumentation in the annotated syntax
+The `//orch8rion:ignore` directive can be added anywhere in your application's
+code, and will disable all `orch8rion` instrumentation in the annotated syntax
 tree.
 
 {{<callout emoji="⚠️">}}
-Beware that not all integrations can be opted out for using `//orchestrion:ignore`. Please refer to
+Beware that not all integrations can be opted out for using `//orch8rion:ignore`. Please refer to
 [remove an integration][remove] for more information.
 
 [remove]: ../configuration.md#remove-an-integration
@@ -36,26 +36,26 @@ package demo
 
 import "net/http"
 
-//orchestrion:ignore I don't want any of this to be instrumented, ever.
+//orch8rion:ignore I don't want any of this to be instrumented, ever.
 func noInstrumentationThere() {
-  // Orchestrion will never add or modify any code in this function
+  // Orch8rion will never add or modify any code in this function
   // ... etc ...
 }
 
 func definitelyInstrumented() {
-  // Orchestrion may add or modify code in this function
+  // Orch8rion may add or modify code in this function
   // ... etc ...
 
-  //orchestrion:ignore This particular database connection will NOT be instrumented
+  //orch8rion:ignore This particular database connection will NOT be instrumented
   db, err := db.Open("driver-name", "database=example")
 
-  // Orchestrion may add or modify code further down in this function
+  // Orch8rion may add or modify code further down in this function
   // ... etc ...
 }
 ```
 
 {{<callout emoji="⚠️">}}
-In certain cases, `orchestrion` adds instrumentation on the library side
+In certain cases, `orch8rion` adds instrumentation on the library side
 (sometimes referred to as _callee_ instrumentation; as opposed to _call site_
 instrumentation).
 
@@ -180,7 +180,7 @@ func callee(ctx context.Context, done chan<- struct{}) {
 The {{<godoc import-path="gopkg.in/DataDog/dd-trace-go.v1">}} or
 {{<godoc import-path="github.com/DataDog/dd-trace-go/v2">}} library can be
 used to manually instrument sections of your code even when building with
-`orchestrion`.
+`orch8rion`.
 
 You can use APIs such as {{<godoc import-path="gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer" package="tracer" name="StartSpanFromContext" >}}
 (in v2: {{<godoc import-path="github.com/DataDog/dd-trace-go/v2/ddtrace/tracer" package="tracer" name="StartSpanFromContext" >}})
@@ -193,12 +193,12 @@ when you need to customize the span more than the `//dd:span` directive allows.
 You may also use integrations from the packages within
 {{<godoc import-path="gopkg.in/DataDog/dd-trace-go.v1/contrib">}} or
 {{<godoc import-path="github.com/DataDog/dd-trace-go/v2/contrib">}}, although
-this may result in duplicated trace spans if `orchestrion` supports automatic
+this may result in duplicated trace spans if `orch8rion` supports automatic
 instrumentation of the same integration.
 
-This can be useful to instrument calls that `orchestrion` does not yet support.
+This can be useful to instrument calls that `orch8rion` does not yet support.
 If you directly use integrations, we encourage you carefully review the
-[release notes](https://github.com/DataDog/orchestrion/releases) before
-upgrading to a new `orchestrion` release, so you can remove manual
+[release notes](https://github.com/senforsce/orch8rion/releases) before
+upgrading to a new `orch8rion` release, so you can remove manual
 instrumentation that was made redundant as necessary.
 {{</callout>}}

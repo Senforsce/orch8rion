@@ -5,7 +5,7 @@ import (
   "context"
   "fmt"
 //line <generated>:1
-  __orchestrion_time "time"
+  __orch8rion_time "time"
 )
 
 //line input.go:8
@@ -16,7 +16,7 @@ func main() {
 func helloWorld(ctx context.Context) error {
 //line <generated>:1
   {
-    ctx, cancel := context.WithTimeout(ctx, 1*__orchestrion_time.Second)
+    ctx, cancel := context.WithTimeout(ctx, 1*__orch8rion_time.Second)
     defer cancel()
     _ = ctx // Use the context to avoid unused variable
   }
@@ -27,7 +27,7 @@ func helloWorld(ctx context.Context) error {
 func printWithContext(ctx context.Context, msg string) (err error) {
 //line <generated>:1
   {
-    ctx, cancel := context.WithTimeout(ctx, 1*__orchestrion_time.Second)
+    ctx, cancel := context.WithTimeout(ctx, 1*__orch8rion_time.Second)
     defer cancel()
     _ = ctx // Use the context to avoid unused variable
   }

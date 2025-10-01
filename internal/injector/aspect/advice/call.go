@@ -11,13 +11,13 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/advice/code"
-	"github.com/DataDog/orchestrion/internal/injector/aspect/context"
-	"github.com/DataDog/orchestrion/internal/injector/typed"
-	"github.com/DataDog/orchestrion/internal/yaml"
 	"github.com/dave/dst"
 	"github.com/goccy/go-yaml/ast"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/advice/code"
+	"github.com/senforsce/orch8rion/internal/injector/aspect/context"
+	"github.com/senforsce/orch8rion/internal/injector/typed"
+	"github.com/senforsce/orch8rion/internal/yaml"
 )
 
 type appendArgs struct {

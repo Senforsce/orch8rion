@@ -10,8 +10,8 @@ import (
 	"fmt"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/goflags"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/goflags"
 	"golang.org/x/tools/go/packages"
 )
 
@@ -60,7 +60,7 @@ func (s *service) load(ctx context.Context, req LoadRequest) (LoadResponse, erro
 			}
 			goFlags = goFlags.Except(
 				"-a",        // Re-building everything here would be VERY expensive, as we'd re-build a lot of stuff multiple times
-				"-toolexec", // We'll override `-toolexec` later with `orchestrion toolexec`, no need to pass multiple times...
+				"-toolexec", // We'll override `-toolexec` later with `orch8rion toolexec`, no need to pass multiple times...
 			)
 
 			cfg := &packages.Config{

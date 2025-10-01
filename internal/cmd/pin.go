@@ -9,28 +9,28 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/pin"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/pin"
 	"github.com/urfave/cli/v2"
 )
 
 var Pin = &cli.Command{
 	Name:  "pin",
-	Usage: "Registers orchestrion in your project's `go.mod` file",
+	Usage: "Registers orch8rion in your project's `go.mod` file",
 	Flags: []cli.Flag{
 		&cli.BoolFlag{
 			Name:  "generate",
-			Usage: "Add a //go:generate directive to " + config.FilenameOrchestrionToolGo + " to facilitate automated upkeep of its contents.",
+			Usage: "Add a //go:generate directive to " + config.FilenameOrch8rionToolGo + " to facilitate automated upkeep of its contents.",
 			Value: true,
 		},
 		&cli.BoolFlag{
 			Name:  "prune",
-			Usage: "Remove imports from " + config.FilenameOrchestrionToolGo + " that do not contain any orchestrion integrations.",
+			Usage: "Remove imports from " + config.FilenameOrch8rionToolGo + " that do not contain any orch8rion integrations.",
 			Value: true,
 		},
 		&cli.BoolFlag{
 			Name:  "validate",
-			Usage: "Validate all " + config.FilenameOrchestrionYML + " files in the project.",
+			Usage: "Validate all " + config.FilenameOrch8rionYML + " files in the project.",
 			Value: false,
 		},
 	},
@@ -40,7 +40,7 @@ var Pin = &cli.Command{
 		)
 		defer func() { span.Finish(tracer.WithError(err)) }()
 
-		return pin.PinOrchestrion(ctx, pin.Options{
+		return pin.PinOrch8rion(ctx, pin.Options{
 			Writer:     clictx.App.Writer,
 			ErrWriter:  clictx.App.ErrWriter,
 			Validate:   clictx.Bool("validate"),

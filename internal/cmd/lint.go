@@ -21,8 +21,8 @@ import (
 
 var Lint = &cli.Command{
 	Name:            "lint",
-	Usage:           "Run selected static analysis checks on Go code for Orchestrion to work better for certain features.",
-	UsageText:       "orchestrion lint [lint arguments...]",
+	Usage:           "Run selected static analysis checks on Go code for Orch8rion to work better for certain features.",
+	UsageText:       "orch8rion lint [lint arguments...]",
 	Args:            true,
 	SkipFlagParsing: true,
 	Action: func(clictx *cli.Context) (err error) {
@@ -31,22 +31,22 @@ var Lint = &cli.Command{
 		)
 		defer func() { span.Finish(tracer.WithError(err)) }()
 
-		// Check if help was requested and print Orchestrion-style header.
+		// Check if help was requested and print Orch8rion-style header.
 		args := clictx.Args().Slice()
 		if slices.Contains(args, "-help") || slices.Contains(args, "--help") || slices.Contains(args, "-h") {
 			tmpl := template.Must(template.New("help").Parse(cli.CommandHelpTemplate))
 			if err := tmpl.Execute(os.Stdout, clictx.Command); err != nil {
 				//nolint:errcheck
-				fmt.Fprintf(clictx.App.Writer, "NAME:\n   orchestrion lint - %s\n\n", clictx.Command.Usage)
+				fmt.Fprintf(clictx.App.Writer, "NAME:\n   orch8rion lint - %s\n\n", clictx.Command.Usage)
 				fmt.Fprintf(clictx.App.Writer, "USAGE:\n   %s\n\n", clictx.Command.UsageText)
 				fmt.Fprintln(clictx.App.Writer)
 			}
 		}
 
 		// Set up os.Args to include the lint subcommand args.
-		// Replace "orchestrion lint" with "orchestrion-lint",
+		// Replace "orch8rion lint" with "orch8rion-lint",
 		// so multichecker sees proper args
-		args = append([]string{"orchestrion-lint"}, args...)
+		args = append([]string{"orch8rion-lint"}, args...)
 		os.Args = args
 
 		// Run multichecker. This will take over with its own flags.

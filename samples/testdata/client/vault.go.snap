@@ -11,7 +11,7 @@ import (
 
 	"github.com/hashicorp/vault/api"
 //line <generated>:1
-	__orchestrion_vaulttrace "github.com/DataDog/dd-trace-go/contrib/hashicorp/vault/v2"
+	__orch8rion_vaulttrace "github.com/DataDog/dd-trace-go/contrib/hashicorp/vault/v2"
 )
 
 //line samples/client/vault.go:14
@@ -22,7 +22,7 @@ func vaultClient() {
 	api.Config{
 		Address: "http://vault.mydomain.com:8200",
 //line <generated>:1
-		HttpClient: __orchestrion_vaulttrace.NewHTTPClient(),
+		HttpClient: __orch8rion_vaulttrace.NewHTTPClient(),
 	})
 //line samples/client/vault.go:18
 	if err != nil {
@@ -37,7 +37,7 @@ func vaultProvidedClient() {
 //line samples/client/vault.go:25
 	api.Config{
 //line <generated>:1
-		HttpClient: __orchestrion_vaulttrace.WrapHTTPClient(
+		HttpClient: __orch8rion_vaulttrace.WrapHTTPClient(
 //line samples/client/vault.go:26
 			&http.Client{}),
 		Address: "http://vault.mydomain.com:8200",

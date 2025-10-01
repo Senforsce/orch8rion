@@ -16,14 +16,14 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/DataDog/orchestrion/internal/binpath"
-	"github.com/DataDog/orchestrion/internal/filelock"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/binpath"
+	"github.com/senforsce/orch8rion/internal/filelock"
 )
 
 const (
 	EnvVarJobserverURL = "ORCHESTRION_JOBSERVER_URL"
-	urlFileName        = ".orchestrion-jobserver"
+	urlFileName        = ".orch8rion-jobserver"
 )
 
 var (
@@ -37,7 +37,7 @@ var (
 //   - If the ORCHESTRION_JOBSERVER_URL environment variable is set, a client
 //     connected to this URL is returned.
 //   - Otherwise, if workDir is not empty, a server will be identified based on
-//     a `.orchestrion-jobserver` file; or a new server will be started using
+//     a `.orch8rion-jobserver` file; or a new server will be started using
 //     that url file, and a connection will be established to it. The started
 //     job server will automatically shut itself down once it no longer has any
 //     active client for a period of time.
@@ -72,7 +72,7 @@ func FromEnvironment(ctx context.Context, workDir string) (*Client, error) {
 
 	// Try to start a server. The server process is idempotent if the `-url-file` flag is used, so we do not check the
 	// command's exit status, because another process might act as our server down the line.
-	cmd := exec.Command(binpath.Orchestrion, "server",
+	cmd := exec.Command(binpath.Orch8rion, "server",
 		"-inactivity-timeout=15m",
 		"-url-file="+urlFilePath,
 		fmt.Sprintf("-parent-pid=%d", os.Getpid()),

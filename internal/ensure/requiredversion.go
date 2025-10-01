@@ -12,21 +12,21 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/DataDog/orchestrion/internal/goenv"
-	"github.com/DataDog/orchestrion/internal/version"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/goenv"
+	"github.com/senforsce/orch8rion/internal/version"
 	"golang.org/x/tools/go/packages"
 )
 
-const orchestrionPkgPath = "github.com/DataDog/orchestrion"
+const orch8rionPkgPath = "github.com/senforsce/orch8rion"
 
-var orchestrionSrcDir string
+var orch8rionSrcDir string
 
-// IncorrectVersionError is returned by [RequiredVersion] when the version of orchestrion running
+// IncorrectVersionError is returned by [RequiredVersion] when the version of orch8rion running
 // does not match the one required by `go.mod`.
 type IncorrectVersionError struct {
 	// RequiredVersion is the version declared in `go.mod`, or a blank string if a `replace` directive
-	// for "github.com/DataDog/orchestrion" is present in `go.mod`.
+	// for "github.com/senforsce/orch8rion" is present in `go.mod`.
 	RequiredVersion string
 }
 
@@ -42,10 +42,10 @@ func RequiredVersion(ctx context.Context) error {
 
 func (e IncorrectVersionError) Error() string {
 	if e.RequiredVersion == "" {
-		return "orchestrion is diverted by a replace directive; please run `go install github.com/DataDog/orchestrion` before trying again"
+		return "orch8rion is diverted by a replace directive; please run `go install github.com/senforsce/orch8rion` before trying again"
 	}
 	return fmt.Sprintf(
-		"orchestrion@%s is required by `go.mod`, but this is orchestrion@%s - please run `go install github.com/DataDog/orchestrion@%[1]s` before trying again",
+		"orch8rion@%s is required by `go.mod`, but this is orch8rion@%s - please run `go install github.com/senforsce/orch8rion@%[1]s` before trying again",
 		e.RequiredVersion,
 		version.Tag(),
 	)
@@ -59,11 +59,11 @@ func requiredVersion(
 ) error {
 	rVersion, path, err := goModVersion(ctx, "" /* Current working directory */)
 	if err != nil {
-		return fmt.Errorf("failed to determine go.mod requirement for %q: %w", orchestrionPkgPath, err)
+		return fmt.Errorf("failed to determine go.mod requirement for %q: %w", orch8rionPkgPath, err)
 	}
 
 	rawTag, _ := version.TagInfo()
-	if rVersion == rawTag || rVersion == version.Tag() || (rVersion == "" && path == orchestrionSrcDir) {
+	if rVersion == rawTag || rVersion == version.Tag() || (rVersion == "" && path == orch8rionSrcDir) {
 		// This is the correct version already, so we can proceed without further ado.
 		return nil
 	}
@@ -71,7 +71,7 @@ func requiredVersion(
 	return IncorrectVersionError{RequiredVersion: rVersion}
 }
 
-// goModVersion returns the version and path of the "github.com/DataDog/orchestrion" module that is
+// goModVersion returns the version and path of the "github.com/senforsce/orch8rion" module that is
 // required in the specified directory's "go.mod" file. If dir is blank, the process' current
 // working directory is used. The version may be blank if a replace directive is in effect; in which
 // case the path value may indicate the location of the source code that is being used instead.
@@ -88,7 +88,7 @@ func goModVersion(ctx context.Context, dir string) (moduleVersion string, module
 		Logf: func(format string, args ...any) { log.Trace().Str("operation", "packages.Load").Msgf(format, args...) },
 	}
 
-	pkgs, err := packages.Load(cfg, orchestrionPkgPath)
+	pkgs, err := packages.Load(cfg, orch8rionPkgPath)
 	if err != nil {
 		return "", "", err
 	}
@@ -119,5 +119,5 @@ func goModVersion(ctx context.Context, dir string) (moduleVersion string, module
 
 func init() {
 	_, thisFile, _, _ := runtime.Caller(0)
-	orchestrionSrcDir = filepath.Join(thisFile, "..", "..", "..")
+	orch8rionSrcDir = filepath.Join(thisFile, "..", "..", "..")
 }

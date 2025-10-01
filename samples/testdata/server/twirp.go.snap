@@ -11,7 +11,7 @@ import (
 
 	"github.com/twitchtv/twirp"
 //line <generated>:1
-	__orchestrion_twirptrace "github.com/DataDog/dd-trace-go/contrib/twitchtv/twirp/v2"
+	__orch8rion_twirptrace "github.com/DataDog/dd-trace-go/contrib/twitchtv/twirp/v2"
 )
 
 //line samples/server/twirp.go:14
@@ -23,7 +23,7 @@ func twirpServerSample() {
 //line samples/server/twirp.go:17
 	twirp.ServerOptions{
 //line <generated>:1
-		Hooks: __orchestrion_twirptrace.NewServerHooks(),
+		Hooks: __orch8rion_twirptrace.NewServerHooks(),
 	}
 //line samples/server/twirp.go:18
 	serverOpts = &
@@ -31,7 +31,7 @@ func twirpServerSample() {
 //line samples/server/twirp.go:18
 	twirp.ServerOptions{
 //line <generated>:1
-		Hooks: twirp.ChainHooks(__orchestrion_twirptrace.NewServerHooks(),
+		Hooks: twirp.ChainHooks(__orch8rion_twirptrace.NewServerHooks(),
 //line samples/server/twirp.go:19
 			&twirp.ServerHooks{
 				RequestReceived:  nil,

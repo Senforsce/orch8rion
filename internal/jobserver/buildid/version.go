@@ -20,12 +20,12 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/DataDog/orchestrion/internal/fingerprint"
-	"github.com/DataDog/orchestrion/internal/goflags"
-	"github.com/DataDog/orchestrion/internal/injector/aspect"
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/version"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/fingerprint"
+	"github.com/senforsce/orch8rion/internal/goflags"
+	"github.com/senforsce/orch8rion/internal/injector/aspect"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/version"
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/tools/go/packages"
 )
@@ -105,7 +105,7 @@ func (s *service) versionSuffix(ctx context.Context, _ VersionSuffixRequest) (Ve
 		}
 	}
 
-	s.resolvedVersion = VersionSuffixResponse(fmt.Sprintf("orchestrion@%s%s;%s", version.Tag(), getTagSuffix(ctx), fptr.Finish()))
+	s.resolvedVersion = VersionSuffixResponse(fmt.Sprintf("orch8rion@%s%s;%s", version.Tag(), getTagSuffix(ctx), fptr.Finish()))
 	return s.resolvedVersion, nil
 }
 

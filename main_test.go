@@ -25,30 +25,30 @@ import (
 func TestBuildFromModuleSubdirectory(t *testing.T) {
 	run := runner{dir: t.TempDir()}
 
-	run.exec(t, "go", "mod", "init", "github.com/DataDog/orchestrion.testing")
-	run.exec(t, "go", "mod", "edit", "-replace=github.com/DataDog/orchestrion="+rootDir)
+	run.exec(t, "go", "mod", "init", "github.com/senforsce/orch8rion.testing")
+	run.exec(t, "go", "mod", "edit", "-replace=github.com/senforsce/orch8rion="+rootDir)
 	require.NoError(t, os.Mkdir(filepath.Join(run.dir, "cmd"), 0o755))
 	require.NoError(t, os.WriteFile(filepath.Join(run.dir, "cmd", "main.go"), []byte(`package main
 
 import (
 	"log"
 
-	"github.com/DataDog/orchestrion/runtime/built"
+	"github.com/senforsce/orch8rion/runtime/built"
 )
 
 func main() {
-	if !built.WithOrchestrion {
-		log.Fatalln("Not built with orchestrion 🤨")
+	if !built.WithOrch8rion {
+		log.Fatalln("Not built with orch8rion 🤨")
 	}
 }
 `), 0o644))
-	orchestrionBin := buildOrchestrion(t)
-	run.exec(t, orchestrionBin, "pin")
+	orch8rionBin := buildOrch8rion(t)
+	run.exec(t, orch8rionBin, "pin")
 
 	// Run the command from a working directory that is NOT the module root, so we can ensure the
 	// configuration is appopriately loaded from the module's root anyway.
 	runCmd := runner{dir: filepath.Join(run.dir, "cmd")}
-	runCmd.exec(t, orchestrionBin, "go", "run", ".")
+	runCmd.exec(t, orch8rionBin, "go", "run", ".")
 }
 
 type benchCase interface {
@@ -57,7 +57,7 @@ type benchCase interface {
 }
 
 var benchCases = map[string]func(b *testing.B) benchCase{
-	"DataDog:orchestrion": benchmarkOrchestrion,
+	"DataDog:orch8rion": benchmarkOrch8rion,
 	// normal build
 	"traefik:traefik": benchmarkGithub("traefik", "traefik", "./...", false),
 	"go-delve:delve":  benchmarkGithub("go-delve", "delve", "./...", false),
@@ -102,7 +102,7 @@ func benchmarkGithub(owner string, repo string, build string, testbuild bool) fu
 
 		tc.gitCloneGithub(b, owner, repo, tag)
 		tc.exec(b, "go", "mod", "download")
-		tc.exec(b, "go", "mod", "edit", "-replace=github.com/DataDog/orchestrion="+rootDir)
+		tc.exec(b, "go", "mod", "edit", "-replace=github.com/senforsce/orch8rion="+rootDir)
 		if stat, err := os.Stat(filepath.Join(tc.dir, "vendor")); err == nil && stat.IsDir() {
 			// If there's a vendor dir, we need to update the `modules.txt` in there to reflect the replacement.
 			tc.exec(b, "go", "mod", "vendor")
@@ -125,18 +125,18 @@ func benchmarkGithub(owner string, repo string, build string, testbuild bool) fu
 				require.NoError(b, f.Close())
 			}
 		}
-		tc.exec(b, buildOrchestrion(b), "pin")
+		tc.exec(b, buildOrch8rion(b), "pin")
 
 		return tc
 	}
 }
 
-type benchOrchestrion struct {
+type benchOrch8rion struct {
 	harness
 }
 
-func benchmarkOrchestrion(_ *testing.B) benchCase {
-	return &benchOrchestrion{harness{runner: runner{dir: rootDir}, build: ".", testbuild: false}}
+func benchmarkOrch8rion(_ *testing.B) benchCase {
+	return &benchOrch8rion{harness{runner: runner{dir: rootDir}, build: ".", testbuild: false}}
 }
 
 type runner struct {
@@ -176,9 +176,9 @@ func (h *harness) instrumented(b *testing.B) {
 
 	var cmd *exec.Cmd
 	if h.testbuild {
-		cmd = exec.Command(buildOrchestrion(b), "go", "test", "-c", "-o", b.TempDir(), h.build)
+		cmd = exec.Command(buildOrch8rion(b), "go", "test", "-c", "-o", b.TempDir(), h.build)
 	} else {
-		cmd = exec.Command(buildOrchestrion(b), "go", "build", "-o", b.TempDir(), h.build)
+		cmd = exec.Command(buildOrch8rion(b), "go", "build", "-o", b.TempDir(), h.build)
 	}
 	cmd.Dir = h.dir
 	cmd.Env = append(os.Environ(), "GOCACHE="+b.TempDir())
@@ -258,21 +258,21 @@ func (h *harness) gitCloneGithub(b *testing.B, owner string, repo string, tag st
 }
 
 var (
-	orchestrionBinOnce sync.Once
-	orchestrionBin     string
+	orch8rionBinOnce sync.Once
+	orch8rionBin     string
 )
 
-func buildOrchestrion(tb testing.TB) string {
+func buildOrch8rion(tb testing.TB) string {
 	tb.Helper()
 
-	orchestrionBinOnce.Do(func() {
-		orchestrionBin = filepath.Join(rootDir, "bin", "orchestrion.exe")
+	orch8rionBinOnce.Do(func() {
+		orch8rionBin = filepath.Join(rootDir, "bin", "orch8rion.exe")
 
-		cmd := exec.Command("go", "build", "-o="+orchestrionBin, rootDir)
+		cmd := exec.Command("go", "build", "-o="+orch8rionBin, rootDir)
 		require.NoError(tb, cmd.Run())
 	})
 
-	return orchestrionBin
+	return orch8rionBin
 }
 
 type contentString struct{ io.Reader }

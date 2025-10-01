@@ -14,12 +14,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/goflags"
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/toolexec/proxy"
 	"github.com/otiai10/copy"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/goflags"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/toolexec/proxy"
 	"github.com/stretchr/testify/require"
 )
 
@@ -37,17 +37,17 @@ func Test(t *testing.T) {
 		tmp := t.TempDir()
 		runGo(t, tmp, "mod", "init", "github.com/DataDog/phony/package")
 		runGo(t, tmp, "mod", "edit",
-			"-replace=github.com/DataDog/orchestrion="+rootDir,
-			"-replace=github.com/DataDog/orchestrion/instrument="+filepath.Join(rootDir, "instrument"),
+			"-replace=github.com/senforsce/orch8rion="+rootDir,
+			"-replace=github.com/senforsce/orch8rion/instrument="+filepath.Join(rootDir, "instrument"),
 		)
 
-		require.NoError(t, os.WriteFile(filepath.Join(tmp, config.FilenameOrchestrionToolGo), []byte(`
+		require.NoError(t, os.WriteFile(filepath.Join(tmp, config.FilenameOrch8rionToolGo), []byte(`
 		//go:build tools
 		package tools
 
 		import (
-			_ "github.com/DataDog/orchestrion"
-			_ "github.com/DataDog/orchestrion/instrument"
+			_ "github.com/senforsce/orch8rion"
+			_ "github.com/senforsce/orch8rion/instrument"
 		)
 	`), 0o644))
 		runGo(t, tmp, "mod", "tidy")
@@ -79,17 +79,17 @@ func Test(t *testing.T) {
 		}))
 		beaconFile := filepath.Join(copyDir, "instrument", "beacon___.go")
 		require.NoError(t, os.WriteFile(beaconFile, []byte("package instrument\nconst BEACON = 42"), 0o644))
-		// Add an aspect that looks like it may inject github.com/DataDog/orchestrion/instrument
+		// Add an aspect that looks like it may inject github.com/senforsce/orch8rion/instrument
 		require.NoError(t, os.WriteFile(
-			filepath.Join(copyDir, "instrument", config.FilenameOrchestrionYML),
-			[]byte(`aspects: [{join-point: {test-main: true}, advice: [{inject-declarations: {imports: {i: 'github.com/DataDog/orchestrion/instrument'}}}]}]`),
+			filepath.Join(copyDir, "instrument", config.FilenameOrch8rionYML),
+			[]byte(`aspects: [{join-point: {test-main: true}, advice: [{inject-declarations: {imports: {i: 'github.com/senforsce/orch8rion/instrument'}}}]}]`),
 			0o644,
 		))
 
-		// Replace the orchestrion package with the copy we just made...
+		// Replace the orch8rion package with the copy we just made...
 		runGo(t, tmp, "mod", "edit",
-			"-replace=github.com/DataDog/orchestrion="+copyDir,
-			"-replace=github.com/DataDog/orchestrion/instrument="+filepath.Join(copyDir, "instrument"),
+			"-replace=github.com/senforsce/orch8rion="+copyDir,
+			"-replace=github.com/senforsce/orch8rion/instrument="+filepath.Join(copyDir, "instrument"),
 		)
 		runGo(t, tmp, "mod", "tidy") // The hash of the dependency has changed... go list would complain...
 		updated := inDir(t, tmp, func() string {
@@ -118,8 +118,8 @@ func Test(t *testing.T) {
 		// Initialize the workspace...
 		runGo(t, tmp, "work", "init")
 		runGo(t, tmp, "work", "edit",
-			"-replace=github.com/DataDog/orchestrion="+rootDir,
-			"-replace=github.com/DataDog/orchestrion/instrument="+filepath.Join(rootDir, "instrument"),
+			"-replace=github.com/senforsce/orch8rion="+rootDir,
+			"-replace=github.com/senforsce/orch8rion/instrument="+filepath.Join(rootDir, "instrument"),
 		)
 
 		// Create the cmd/main package...
@@ -127,16 +127,16 @@ func Test(t *testing.T) {
 		require.NoError(t, os.MkdirAll(pkgMain, 0o755))
 		runGo(t, pkgMain, "mod", "init", "github.com/DataDog/phony/cmd/main")
 		runGo(t, tmp, "work", "use", filepath.Join("cmd", "main"))
-		require.NoError(t, os.WriteFile(filepath.Join(pkgMain, config.FilenameOrchestrionToolGo), []byte(`
+		require.NoError(t, os.WriteFile(filepath.Join(pkgMain, config.FilenameOrch8rionToolGo), []byte(`
 		//go:build tools
 		package tools
 
 		import (
-			_ "github.com/DataDog/orchestrion"
+			_ "github.com/senforsce/orch8rion"
 			_ "github.com/DataDog/phony/pkg/dep"
 		)
 		`), 0o644))
-		require.NoError(t, os.WriteFile(filepath.Join(pkgMain, config.FilenameOrchestrionYML),
+		require.NoError(t, os.WriteFile(filepath.Join(pkgMain, config.FilenameOrch8rionYML),
 			[]byte(`aspects: [{join-point: {test-main: true}, advice: [{inject-declarations: {imports: {i: 'github.com/DataDog/phony/pkg/dep'}}}]}]`),
 			0o644,
 		))

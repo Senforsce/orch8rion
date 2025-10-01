@@ -12,7 +12,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/cmd"
+	"github.com/senforsce/orch8rion/internal/cmd"
 	"github.com/stretchr/testify/require"
 	"github.com/urfave/cli/v2"
 )
@@ -46,7 +46,7 @@ func TestLint(t *testing.T) {
 				// So we'll focus on testing the help output preparation
 
 				// Set up arguments that include help
-				testArgs := append([]string{"orchestrion", "lint"}, tt.args...)
+				testArgs := append([]string{"orch8rion", "lint"}, tt.args...)
 				os.Args = testArgs
 
 				// The lint command will call multichecker.Main() which exits
@@ -55,7 +55,7 @@ func TestLint(t *testing.T) {
 
 				require.NotNil(t, cmd.Lint.Action)
 				require.Equal(t, "lint", cmd.Lint.Name)
-				require.Equal(t, "Run selected static analysis checks on Go code for Orchestrion to work better for certain features.", cmd.Lint.Usage)
+				require.Equal(t, "Run selected static analysis checks on Go code for Orch8rion to work better for certain features.", cmd.Lint.Usage)
 				require.True(t, cmd.Lint.SkipFlagParsing)
 			})
 		}
@@ -64,8 +64,8 @@ func TestLint(t *testing.T) {
 	t.Run("command configuration", func(t *testing.T) {
 		// Test command properties
 		require.Equal(t, "lint", cmd.Lint.Name)
-		require.Equal(t, "Run selected static analysis checks on Go code for Orchestrion to work better for certain features.", cmd.Lint.Usage)
-		require.Equal(t, "orchestrion lint [lint arguments...]", cmd.Lint.UsageText)
+		require.Equal(t, "Run selected static analysis checks on Go code for Orch8rion to work better for certain features.", cmd.Lint.Usage)
+		require.Equal(t, "orch8rion lint [lint arguments...]", cmd.Lint.UsageText)
 		require.True(t, cmd.Lint.Args)
 		require.True(t, cmd.Lint.SkipFlagParsing)
 		require.NotNil(t, cmd.Lint.Action)
@@ -78,9 +78,9 @@ func TestLint(t *testing.T) {
 		// But we can verify the argument preparation logic
 
 		args := []string{"-checks=all", "./..."}
-		expectedArgs := append([]string{"orchestrion-lint"}, args...)
+		expectedArgs := append([]string{"orch8rion-lint"}, args...)
 
-		require.Equal(t, []string{"orchestrion-lint", "-checks=all", "./..."}, expectedArgs)
+		require.Equal(t, []string{"orch8rion-lint", "-checks=all", "./..."}, expectedArgs)
 	})
 
 	t.Run("context with tracing", func(t *testing.T) {
@@ -141,14 +141,14 @@ func TestLintIntegration(t *testing.T) {
 
 	t.Run("command execution setup", func(t *testing.T) {
 		// Test the command setup process that would happen before multichecker.Main()
-		originalArgs := []string{"orchestrion", "lint", "-checks=all", "./..."}
+		originalArgs := []string{"orch8rion", "lint", "-checks=all", "./..."}
 
 		// Simulate the argument transformation from the lint command
-		args := originalArgs[2:] // Remove "orchestrion lint"
-		modifiedArgs := append([]string{"orchestrion-lint"}, args...)
+		args := originalArgs[2:] // Remove "orch8rion lint"
+		modifiedArgs := append([]string{"orch8rion-lint"}, args...)
 
 		// Verify the transformation
-		require.Equal(t, "orchestrion-lint", modifiedArgs[0])
+		require.Equal(t, "orch8rion-lint", modifiedArgs[0])
 		require.Contains(t, modifiedArgs, "-checks=all")
 		require.Contains(t, modifiedArgs, "./...")
 		require.Len(t, modifiedArgs, 3)

@@ -15,13 +15,13 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 //line <generated>:1
-	__orchestrion_v2 "github.com/DataDog/dd-trace-go/contrib/database/sql/v2"
-	__orchestrion_gormtrace "github.com/DataDog/dd-trace-go/contrib/gorm.io/gorm.v1/v2"
+	__orch8rion_v2 "github.com/DataDog/dd-trace-go/contrib/database/sql/v2"
+	__orch8rion_gormtrace "github.com/DataDog/dd-trace-go/contrib/gorm.io/gorm.v1/v2"
 )
 
 //line samples/client/gorm.go:18
 func gormClient() {
-	sqlDB, err := __orchestrion_v2.Open("sqlite3", "file::memory:?cache=shared")
+	sqlDB, err := __orch8rion_v2.Open("sqlite3", "file::memory:?cache=shared")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,7 +37,7 @@ func gormClient() {
 			if err != nil {
 				return nil, err
 			}
-			if err := db.Use(__orchestrion_gormtrace.NewTracePlugin()); err != nil {
+			if err := db.Use(__orch8rion_gormtrace.NewTracePlugin()); err != nil {
 				return nil, err
 			}
 			return db, nil

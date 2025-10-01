@@ -4,22 +4,22 @@
 // Copyright 2023-present Datadog, Inc.
 
 // Package built provides information about how the current application has been
-// built, if it has been built using orchestrion. It provides advanced features
+// built, if it has been built using orch8rion. It provides advanced features
 // used internally by the Datadog tracer library to convey accurate telemetry
 // data (when the application is opted in to Datadog telemetry at runtime), and
 // may be useful in certain advanced use cases. Most users should not need to
 // use anything from this package.
 package built
 
-// WithOrchestrion is true if the current application was built using
-// orchestrion. This is useful to perform certain behavior dependent on whether
+// WithOrch8rion is true if the current application was built using
+// orch8rion. This is useful to perform certain behavior dependent on whether
 // the application was automatically instrumented or not. This can be useful to
 // avoid double-instrumentation, or to guarantee the application runs with
 // automatic instrumentation. Most users should not need to use this variable.
-const WithOrchestrion = false
+const WithOrch8rion = false
 
-// WithOrchestrionVersion is the version of orchestrion used to build the
+// WithOrch8rionVersion is the version of orch8rion used to build the
 // library, if the application was built by it. It is a blank string otherwise.
-// This can be useful context to include in logs when the use of orchestrion is
+// This can be useful context to include in logs when the use of orch8rion is
 // relevant. Most users should not need to use this variable.
-const WithOrchestrionVersion = ""
+const WithOrch8rionVersion = ""

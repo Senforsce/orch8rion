@@ -13,13 +13,13 @@ import (
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/ext"
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/jobserver/common"
-	"github.com/DataDog/orchestrion/internal/traceutil"
 	"github.com/nats-io/nats.go"
+	"github.com/senforsce/orch8rion/internal/jobserver/common"
+	"github.com/senforsce/orch8rion/internal/traceutil"
 )
 
 const (
-	Username   = "orchestrion"
+	Username   = "orch8rion"
 	NoPassword = "" // We only use account management to have access to system events, not for security.
 )
 
@@ -30,7 +30,7 @@ type Client struct {
 // Connect creates a new client connected to the NATS server at the specified
 // address.
 func Connect(addr string) (*Client, error) {
-	conn, err := nats.Connect(addr, nats.Name(fmt.Sprintf("orchestrion[%d]", os.Getpid())), nats.UserInfo(Username, NoPassword))
+	conn, err := nats.Connect(addr, nats.Name(fmt.Sprintf("orch8rion[%d]", os.Getpid())), nats.UserInfo(Username, NoPassword))
 	if err != nil {
 		return nil, err
 	}

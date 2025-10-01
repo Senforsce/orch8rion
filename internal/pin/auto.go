@@ -13,20 +13,20 @@ import (
 	"os"
 	"strings"
 
-	"github.com/DataDog/orchestrion/internal/ensure"
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/version"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/ensure"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/version"
 	"golang.org/x/term"
 )
 
 const envVarCheckedGoMod = "DD_ORCHESTRION_IS_GOMOD_VERSION"
 
-// AutoPinOrchestrion automatically runs [PinOrchestrion] if the necessary
+// AutoPinOrch8rion automatically runs [PinOrch8rion] if the necessary
 // requirements are not already met. It prints messages to `stderr` to inform
 // the user about what is going on.
-func AutoPinOrchestrion(ctx context.Context, stdout io.Writer, stderr io.Writer) error {
+func AutoPinOrch8rion(ctx context.Context, stdout io.Writer, stderr io.Writer) error {
 	log := zerolog.Ctx(ctx)
 
 	if os.Getenv(envVarCheckedGoMod) == "true" {
@@ -43,27 +43,27 @@ func AutoPinOrchestrion(ctx context.Context, stdout io.Writer, stderr io.Writer)
 		err := ensure.RequiredVersion(ctx)
 		if errors.As(err, &ensure.IncorrectVersionError{}) {
 			// There is already a required version, but we're not running that one!
-			log.Trace().Err(err).Msg("Orchestrion is already in go.mod, but we are not running the correct one; returning an error")
+			log.Trace().Err(err).Msg("Orch8rion is already in go.mod, but we are not running the correct one; returning an error")
 			return err
 		}
 		if err == nil {
 			// We're good to go
-			log.Trace().Msg("Orchestrion is already in go.mod, and we are running the correct version, no automatic pinning required")
+			log.Trace().Msg("Orch8rion is already in go.mod, and we are running the correct version, no automatic pinning required")
 			return nil
 		}
-		log.Trace().Err(err).Msg("Failed to detect required version of orchestrion from go.mod")
+		log.Trace().Err(err).Msg("Failed to detect required version of orch8rion from go.mod")
 	} else {
 		log.Trace().Msg("Skipping ensure.RequiredVersion because this is a development build")
-		_, err := os.Stat(config.FilenameOrchestrionToolGo)
+		_, err := os.Stat(config.FilenameOrch8rionToolGo)
 		if err == nil {
-			log.Trace().Msg("Found " + config.FilenameOrchestrionToolGo + " file, no automatic pinning required")
+			log.Trace().Msg("Found " + config.FilenameOrch8rionToolGo + " file, no automatic pinning required")
 			return nil
 		}
 		if !errors.Is(err, os.ErrNotExist) {
-			log.Trace().Err(err).Msg("Failed to stat " + config.FilenameOrchestrionToolGo + ", returning error")
+			log.Trace().Err(err).Msg("Failed to stat " + config.FilenameOrch8rionToolGo + ", returning error")
 			return err
 		}
-		log.Trace().Msg("No " + config.FilenameOrchestrionToolGo + " file found, will attempt automatic pinning")
+		log.Trace().Msg("No " + config.FilenameOrch8rionToolGo + " file found, will attempt automatic pinning")
 	}
 
 	var (
@@ -88,17 +88,17 @@ func AutoPinOrchestrion(ctx context.Context, stdout io.Writer, stderr io.Writer)
 	var builder strings.Builder
 	_, _ = builder.WriteString(lipgloss.NewStyle().Bold(true).Foreground(lipgloss.ANSIColor(3)).Render("Warning:"))
 	_, _ = builder.WriteRune(' ')
-	_, _ = builder.WriteString(stylePath.Render(orchestrionImportPath))
+	_, _ = builder.WriteString(stylePath.Render(orch8rionImportPath))
 	_, _ = builder.WriteString(" is not present in your ")
 	_, _ = builder.WriteString(styleFile.Render("go.mod"))
-	_, _ = builder.WriteString(" file.\nIn order to ensure build reliability and reproductibility, orchestrion")
+	_, _ = builder.WriteString(" file.\nIn order to ensure build reliability and reproductibility, orch8rion")
 	_, _ = builder.WriteString(" will now add itself in your ")
 	_, _ = builder.WriteString(styleFile.Render("go.mod"))
 	_, _ = builder.WriteString(" file by:\n\n\t1. creating a new file named ")
-	_, _ = builder.WriteString(styleFile.Render(config.FilenameOrchestrionToolGo))
+	_, _ = builder.WriteString(styleFile.Render(config.FilenameOrch8rionToolGo))
 	_, _ = builder.WriteString("\n\t2. running ")
 	rawTag, _ := version.TagInfo()
-	_, _ = builder.WriteString(styleCmd.Render(fmt.Sprintf("go get %s@%s", orchestrionImportPath, rawTag)))
+	_, _ = builder.WriteString(styleCmd.Render(fmt.Sprintf("go get %s@%s", orch8rionImportPath, rawTag)))
 	_, _ = builder.WriteString("\n\t3. running ")
 	_, _ = builder.WriteString(styleCmd.Render("go mod tidy"))
 	_, _ = builder.WriteString("\n\nYou should commit the resulting changes into your source control system.")
@@ -106,8 +106,8 @@ func AutoPinOrchestrion(ctx context.Context, stdout io.Writer, stderr io.Writer)
 	message := builder.String()
 	_, _ = fmt.Fprintln(stderr, box.Render(message))
 
-	if err := PinOrchestrion(ctx, Options{Writer: stdout, ErrWriter: stderr}); err != nil {
-		return fmt.Errorf("failed to pin orchestrion in go.mod: %w", err)
+	if err := PinOrch8rion(ctx, Options{Writer: stdout, ErrWriter: stderr}); err != nil {
+		return fmt.Errorf("failed to pin orch8rion in go.mod: %w", err)
 	}
 
 	return nil

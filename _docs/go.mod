@@ -1,19 +1,19 @@
-module github.com/DataDog/orchestrion/_docs
+module github.com/senforsce/orch8rion/_docs
 
 go 1.24.0
 
 replace (
-	github.com/DataDog/orchestrion => ..
-	github.com/DataDog/orchestrion/instrument => ../instrument
+	github.com/senforsce/orch8rion => ..
+	github.com/senforsce/orch8rion/instrument => ../instrument
 )
 
 require (
 	cloud.google.com/go v0.122.0
 	cloud.google.com/go/pubsub v1.50.1
 	github.com/99designs/gqlgen v0.17.80
-	github.com/DataDog/dd-trace-go/orchestrion/all/v2 v2.2.3
-	github.com/DataDog/orchestrion v1.5.0
-	github.com/DataDog/orchestrion/instrument v1.5.0
+	github.com/DataDog/dd-trace-go/orch8rion/all/v2 v2.2.3
+	github.com/senforsce/orch8rion v1.5.0
+	github.com/senforsce/orch8rion/instrument v1.5.0
 	github.com/IBM/sarama v1.46.1
 	github.com/Shopify/sarama v1.38.1
 	github.com/aws/aws-sdk-go v1.55.8

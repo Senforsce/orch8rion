@@ -17,11 +17,11 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/binpath"
-	"github.com/DataDog/orchestrion/internal/goflags"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/traceutil"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/binpath"
+	"github.com/senforsce/orch8rion/internal/goflags"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/traceutil"
 	"golang.org/x/tools/go/packages"
 )
 
@@ -152,12 +152,12 @@ func (s *service) resolve(ctx context.Context, req *ResolveRequest) (ResolveResp
 		}
 		goFlags = goFlags.Except(
 			"-a",        // Re-building everything here would be VERY expensive, as we'd re-build a lot of stuff multiple times
-			"-toolexec", // We'll override `-toolexec` later with `orchestrion toolexec`, no need to pass multiple times...
+			"-toolexec", // We'll override `-toolexec` later with `orch8rion toolexec`, no need to pass multiple times...
 		)
 
 		buildFlags := append(
 			goFlags.Slice(),
-			fmt.Sprintf("-toolexec=%q toolexec", binpath.Orchestrion),
+			fmt.Sprintf("-toolexec=%q toolexec", binpath.Orch8rion),
 		)
 
 		pkgs, err := packages.Load(

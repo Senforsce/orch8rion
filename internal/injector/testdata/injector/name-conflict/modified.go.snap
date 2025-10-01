@@ -2,7 +2,7 @@
 package test
 
 //line <generated>:1
-import __orchestrion_fmt "fmt"
+import __orch8rion_fmt "fmt"
 
 //line input.go:3
 var fmt = "hello"
@@ -11,7 +11,7 @@ var fmt = "hello"
 func foo() {
 //line <generated>:1
   {
-    __orchestrion_fmt.Println("hello world")
+    __orch8rion_fmt.Println("hello world")
   }
 //line input.go:7
   println(fmt)

@@ -11,7 +11,7 @@ import (
 
 	"github.com/gocql/gocql"
 //line <generated>:1
-	__orchestrion_gocqltrace "github.com/DataDog/dd-trace-go/contrib/gocql/gocql/v2"
+	__orch8rion_gocqltrace "github.com/DataDog/dd-trace-go/contrib/gocql/gocql/v2"
 )
 
 //line samples/client/gocql.go:14
@@ -19,7 +19,7 @@ func SampleGoCQL1() {
 	cluster :=
 //line <generated>:1
 		func(cluster *gocql.ClusterConfig) *gocql.ClusterConfig {
-			obs := __orchestrion_gocqltrace.NewObserver(cluster)
+			obs := __orch8rion_gocqltrace.NewObserver(cluster)
 			cluster.QueryObserver = obs
 			cluster.BatchObserver = obs
 			cluster.ConnectObserver = obs
@@ -37,7 +37,7 @@ func SampleGoCQL2() {
 	cluster :=
 //line <generated>:1
 		func(cluster gocql.ClusterConfig) gocql.ClusterConfig {
-			obs := __orchestrion_gocqltrace.NewObserver(&cluster)
+			obs := __orch8rion_gocqltrace.NewObserver(&cluster)
 			cluster.QueryObserver = obs
 			cluster.BatchObserver = obs
 			cluster.ConnectObserver = obs
@@ -55,7 +55,7 @@ func SampleGoCQL3() {
 	cluster :=
 //line <generated>:1
 		func(cluster *gocql.ClusterConfig) *gocql.ClusterConfig {
-			obs := __orchestrion_gocqltrace.NewObserver(cluster)
+			obs := __orch8rion_gocqltrace.NewObserver(cluster)
 			cluster.QueryObserver = obs
 			cluster.BatchObserver = obs
 			cluster.ConnectObserver = obs

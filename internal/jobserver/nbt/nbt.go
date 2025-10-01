@@ -14,11 +14,11 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/DataDog/orchestrion/internal/files"
-	"github.com/DataDog/orchestrion/internal/jobserver/common"
 	"github.com/google/uuid"
 	"github.com/nats-io/nats.go"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/files"
+	"github.com/senforsce/orch8rion/internal/jobserver/common"
 )
 
 const (
@@ -47,7 +47,7 @@ type (
 )
 
 func Subscribe(ctx context.Context, conn *nats.Conn) (cleanup func(context.Context) error, resErr error) {
-	dir, err := os.MkdirTemp("", "orchestrion.nbt-*")
+	dir, err := os.MkdirTemp("", "orch8rion.nbt-*")
 	if err != nil {
 		return nil, fmt.Errorf("creating storage directory: %w", err)
 	}

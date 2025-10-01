@@ -11,10 +11,10 @@ import (
 	"os"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/toolexec/aspect/linkdeps"
-	"github.com/DataDog/orchestrion/internal/toolexec/importcfg"
-	"github.com/DataDog/orchestrion/internal/toolexec/proxy"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/toolexec/aspect/linkdeps"
+	"github.com/senforsce/orch8rion/internal/toolexec/importcfg"
+	"github.com/senforsce/orch8rion/internal/toolexec/proxy"
 )
 
 func (w Weaver) OnLink(ctx context.Context, cmd *proxy.LinkCommand) (err error) {

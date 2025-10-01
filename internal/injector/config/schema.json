@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://datadoghq.dev/orchestrion/schema.json",
+  "$id": "https://datadoghq.dev/orch8rion/schema.json",
   "type": "object",
   "required": [ "meta"],
   "anyOf": [

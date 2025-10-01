@@ -5,7 +5,7 @@ import (
   "context"
   "fmt"
 //line <generated>:1
-  __orchestrion_tracer "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+  __orch8rion_tracer "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 //line input.go:8
@@ -16,11 +16,11 @@ func main() {
 func helloWorld(ctx context.Context) (__result__0 error) {
 //line <generated>:1
   {
-    var span __orchestrion_tracer.Span
-    span, ctx = __orchestrion_tracer.StartSpanFromContext(ctx, "helloWorld")
+    var span __orch8rion_tracer.Span
+    span, ctx = __orch8rion_tracer.StartSpanFromContext(ctx, "helloWorld")
 
     defer func() {
-      span.Finish(__orchestrion_tracer.WithError(__result__0))
+      span.Finish(__orch8rion_tracer.WithError(__result__0))
     }()
 
   }
@@ -31,11 +31,11 @@ func helloWorld(ctx context.Context) (__result__0 error) {
 func printWithContext(ctx context.Context, msg string) (err error) {
 //line <generated>:1
   {
-    var span __orchestrion_tracer.Span
-    span, ctx = __orchestrion_tracer.StartSpanFromContext(ctx, "printWithContext")
+    var span __orch8rion_tracer.Span
+    span, ctx = __orch8rion_tracer.StartSpanFromContext(ctx, "printWithContext")
 
     defer func() {
-      span.Finish(__orchestrion_tracer.WithError(err))
+      span.Finish(__orch8rion_tracer.WithError(err))
     }()
 
   }

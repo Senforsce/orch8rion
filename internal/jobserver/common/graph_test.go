@@ -8,7 +8,7 @@ package common_test
 import (
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/jobserver/common"
+	"github.com/senforsce/orch8rion/internal/jobserver/common"
 	"github.com/stretchr/testify/require"
 )
 

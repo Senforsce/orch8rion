@@ -3,9 +3,9 @@ title: Architecture
 weight: 90
 ---
 
-## How `orchestrion` works
+## How `orch8rion` works
 
-Orchestrion leverages the standard Go toolchain's `-toolexec` flag to intercept
+Orch8rion leverages the standard Go toolchain's `-toolexec` flag to intercept
 invocations to specific tools of the toolchain as part of the build:
 
 1. Invocations of `go tool compile`
@@ -27,39 +27,39 @@ sequenceDiagram
   autonumber
 
   participant Toolchain as go toolchain
-  participant Orchestrion as orchestrion toolexec
-  participant JobServer as orchestrion job server
+  participant Orch8rion as orch8rion toolexec
+  participant JobServer as orch8rion job server
   participant Compiler as go tool compile
   participant Linker as go tool link
 
-  Toolchain ->>+ Orchestrion: compile -V=full
-  Orchestrion ->>+ Compiler: -V=full
-  Compiler -->>- Orchestrion: version string
-  Orchestrion ->>+ JobServer: build.version
+  Toolchain ->>+ Orch8rion: compile -V=full
+  Orch8rion ->>+ Compiler: -V=full
+  Compiler -->>- Orch8rion: version string
+  Orch8rion ->>+ JobServer: build.version
   Note right of JobServer: Cache miss
   JobServer ->>+ Toolchain: packages.Load
   Toolchain -->>- JobServer: packages
-  JobServer -->>- Orchestrion: version suffix
-  Orchestrion -->>- Toolchain: full version string
+  JobServer -->>- Orch8rion: version suffix
+  Orch8rion -->>- Toolchain: full version string
 
-  Toolchain ->>+ Orchestrion: link -V=full
-  Orchestrion ->>+ Linker: -V=full
-  Linker -->>- Orchestrion: version string
-  Orchestrion ->>+ JobServer: build.version
+  Toolchain ->>+ Orch8rion: link -V=full
+  Orch8rion ->>+ Linker: -V=full
+  Linker -->>- Orch8rion: version string
+  Orch8rion ->>+ JobServer: build.version
   Note right of JobServer: Cache hit
-  JobServer -->>- Orchestrion: version suffix
-  Orchestrion -->>- Toolchain: full version string
+  JobServer -->>- Orch8rion: version suffix
+  Orch8rion -->>- Toolchain: full version string
 ```
 
 The standard Go toolchain invokes all tools involved in a given build with the
 `-V=full` argument (①, ⑨), so it can use all tool's versions as build cache
-invalidation inputs. Orchestrion intercepts those calls, and appends information
+invalidation inputs. Orch8rion intercepts those calls, and appends information
 about itself to the results (④, ⑫). The version information added by
-orchestrion changes:
+orch8rion changes:
 
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code"><div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="k">compile version go1.23.6</span><span class="o">:</span><span class="nb">orchestrion@v1.1.0-rc.1</span><span class="o">;</span><span class="s2">&lt;base64-encoded-hash&gt;</span></code></pre></div></div></div>
+<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code"><div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="k">compile version go1.23.6</span><span class="o">:</span><span class="nb">orch8rion@v1.1.0-rc.1</span><span class="o">;</span><span class="s2">&lt;base64-encoded-hash&gt;</span></code></pre></div></div></div>
 
-- the version of orchestrion being used, as different versions may apply
+- the version of orch8rion being used, as different versions may apply
   integrations differently
 - a base64-encoded hash composed using:
   - the specific configuration being used, as different integrations configured
@@ -85,38 +85,38 @@ sequenceDiagram
   autonumber
 
   participant Toolchain as go toolchain
-  participant Orchestrion as orchestrion toolexec
-  participant JobServer as orchestrion job server
+  participant Orch8rion as orch8rion toolexec
+  participant JobServer as orch8rion job server
   participant Compiler as go tool compile
 
   loop For each package
-    Toolchain ->>+ Orchestrion: compile ${args...}
+    Toolchain ->>+ Orch8rion: compile ${args...}
     note over Toolchain,JobServer: The job server ensures a given package is compiled exactly once
     alt first build of package
-      Orchestrion ->>+ JobServer: build.Start
-      JobServer ->>- Orchestrion: token
-      Orchestrion ->> Orchestrion: instrument .go files
-      Orchestrion ->>+ JobServer: packages.Resolve
+      Orch8rion ->>+ JobServer: build.Start
+      JobServer ->>- Orch8rion: token
+      Orch8rion ->> Orch8rion: instrument .go files
+      Orch8rion ->>+ JobServer: packages.Resolve
       note right of JobServer: injected packages
       JobServer ->>+ Toolchain: packages.Load
       Toolchain -->>- JobServer: packages
-      JobServer -->>- Orchestrion: archives
+      JobServer -->>- Orch8rion: archives
       opt When package is "main"
-        Orchestrion ->> Orchestrion: write link-deps.go
+        Orch8rion ->> Orch8rion: write link-deps.go
       end
-      Orchestrion ->> Orchestrion: update -importcfg file
-      note over Orchestrion,Compiler: Invoke the actual compiler tool
-      Orchestrion -->>+ Compiler: ${args...}
-      Compiler ->>- Orchestrion: exit code
-      Orchestrion ->> Orchestrion: add link.deps to -output file
-      Orchestrion ->>+ JobServer: build.Finish
-      JobServer -->>- Orchestrion: ack
+      Orch8rion ->> Orch8rion: update -importcfg file
+      note over Orch8rion,Compiler: Invoke the actual compiler tool
+      Orch8rion -->>+ Compiler: ${args...}
+      Compiler ->>- Orch8rion: exit code
+      Orch8rion ->> Orch8rion: add link.deps to -output file
+      Orch8rion ->>+ JobServer: build.Finish
+      JobServer -->>- Orch8rion: ack
     else subsequent build of package (idempotent)
-      Orchestrion ->>+ JobServer: build.Start
-      JobServer ->>- Orchestrion: idempotent
-      Orchestrion ->> Orchestrion: Copy build artifacts
+      Orch8rion ->>+ JobServer: build.Start
+      JobServer ->>- Orch8rion: idempotent
+      Orch8rion ->> Orch8rion: Copy build artifacts
     end
-    Orchestrion -->>- Toolchain: exit code
+    Orch8rion -->>- Toolchain: exit code
   end
 ```
 
@@ -124,11 +124,11 @@ The standard Go toolchain makes one invocation to `go tool compile` (①) for
 each package being built (unless that particular package is already present in
 the `GOCACHE`).
 
-Orchestrion begins by registering the package build with the job server (②),
+Orch8rion begins by registering the package build with the job server (②),
 which will determine whether the build is new and should proceed (③); or if it
 has already been done and should be re-used from cache (⑰).
 
-When doing the first build of a package (④), orchestrion will:
+When doing the first build of a package (④), orch8rion will:
 
 - parse all `.go` source files using {{<godoc import-path="go/parser">}}
 - type-check the {{<godoc import-path="go/ast" name="File">}}
@@ -173,25 +173,25 @@ sequenceDiagram
   autonumber
 
   participant Toolchain as go toolchain
-  participant Orchestrion as orchestrion toolexec
-  participant JobServer as orchestrion job server
+  participant Orch8rion as orch8rion toolexec
+  participant JobServer as orch8rion job server
   participant Linker as go tool link
 
   loop For each executable
-    Toolchain ->>+ Orchestrion: link ${args...}
+    Toolchain ->>+ Orch8rion: link ${args...}
     loop For each -importcfg entry
-      Orchestrion ->> Orchestrion: read link.deps object
-      Orchestrion ->>+ JobServer: packages.Resolve
+      Orch8rion ->> Orch8rion: read link.deps object
+      Orch8rion ->>+ JobServer: packages.Resolve
       note right of JobServer: un-satisfied link-time dependencies
       JobServer ->>+ Toolchain: packages.Load
       Toolchain -->>- JobServer: packages
-      JobServer -->>- Orchestrion: archives
+      JobServer -->>- Orch8rion: archives
     end
-    Orchestrion ->> Orchestrion: update -importcfg file
-    note over Orchestrion,Linker: Invoke the actual linker tool
-    Orchestrion -->>+ Linker: ${args...}
-    Linker ->>- Orchestrion: exit code
-    Orchestrion -->>- Toolchain: exit code
+    Orch8rion ->> Orch8rion: update -importcfg file
+    note over Orch8rion,Linker: Invoke the actual linker tool
+    Orch8rion -->>+ Linker: ${args...}
+    Linker ->>- Orch8rion: exit code
+    Orch8rion -->>- Toolchain: exit code
   end
 ```
 
@@ -199,7 +199,7 @@ The standard Go toolchain invokes `go tool link` (①) once for each executable
 binary being produced. When using `go run` or `go build`, this is a single
 invocation; however `go test` will invoke the linker once for each test package.
 
-Orchestrion intercepts the linker commands to update the `-importcfg` file so
+Orch8rion intercepts the linker commands to update the `-importcfg` file so
 that it correctly lists all link-time dependencies introduced by instrumentation
 of all linked packages (②). It uses {{<godoc
   import-path="golang.org/x/tools/go/packages"
@@ -212,7 +212,7 @@ Finally, it invokes the `go tool link` with updated arguments (⑧).
 
 ## Code Injection
 
-Orchestrion drives code injection using a process similar to classical
+Orch8rion drives code injection using a process similar to classical
 Aspect-oriented Programming (AoP) (see [Aspects][contrib-aspects]). These
 combine a _Join Point_ (where code needs to be modified) with one or more
 _Advice_ (what modifications need to be made).
@@ -235,7 +235,7 @@ the configured advice where join points match.
 
 ## The job server
 
-Due to the design of the Go toolchain's `-toolexec` feature, orchestrion works
+Due to the design of the Go toolchain's `-toolexec` feature, orch8rion works
 by wrapping a large number of short-lived processes, which makes it difficult to
 share state between individual processes.
 
@@ -243,7 +243,7 @@ Some of the work performed during instrumentation can however be expensive, and
 we can preserve resources by making sure that work is done exactly once,
 regardless of how many times it is required.
 
-Orchestrion addresses this by starting a _job server_, which uses the
+Orch8rion addresses this by starting a _job server_, which uses the
 [NATS][nats] protocol and stays up for the entire duration of the build. That
 server is responsible for the following aspects:
 

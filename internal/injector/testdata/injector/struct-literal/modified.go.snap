@@ -5,14 +5,14 @@ import (
   "github.com/aws/aws-sdk-go-v2/aws"
 
 //line <generated>:1
-  __orchestrion_awstrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/aws/aws-sdk-go-v2/aws"
+  __orch8rion_awstrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/aws/aws-sdk-go-v2/aws"
 )
 
 //line input.go:5
 var cfgValue =
 //line <generated>:1
 func(cfg aws.Config) aws.Config {
-  __orchestrion_awstrace.AppendMiddleware(&cfg)
+  __orch8rion_awstrace.AppendMiddleware(&cfg)
   return cfg
 }(
 //line input.go:5
@@ -20,7 +20,7 @@ func(cfg aws.Config) aws.Config {
 var cfgPtr =
 //line <generated>:1
 func(cfg *aws.Config) *aws.Config {
-  __orchestrion_awstrace.AppendMiddleware(cfg)
+  __orch8rion_awstrace.AppendMiddleware(cfg)
   return cfg
 }(
 //line input.go:6

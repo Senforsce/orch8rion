@@ -12,5 +12,5 @@ package instrument
 // to the `dd-trace-go` package.
 import (
 	_ "github.com/DataDog/dd-trace-go/orchestrion/all/v2" // integration
-	_ "github.com/DataDog/orchestrion"                    // integration
+	_ "github.com/senforsce/orch8rion"                    // integration
 )

@@ -48,9 +48,9 @@ Among other information, the _build IDs_ also factor in information about the
 dependencies of the object, so that changing a package invalidates all its
 dependents when relevant.
 
-## Enter `orchestrion toolexec`
+## Enter `orch8rion toolexec`
 
-At the core, Orchestrion is interfacing with the standard Go toolchain using the
+At the core, Orch8rion is interfacing with the standard Go toolchain using the
 `-toolexec` mechanism:
 
 > ```
@@ -62,24 +62,24 @@ At the core, Orchestrion is interfacing with the standard Go toolchain using the
 > 	matching 'go list -f {{.ImportPath}}' for the package being built.
 > ```
 
-This mechanism allows `orchestrion` to integrate into the Go build process to
+This mechanism allows `orch8rion` to integrate into the Go build process to
 modify the source code about to be compiled. In particular:
 
 - The `compile` command is provided all `.go` files that are compiled into the
-  final executable; which `orchestrion` will modify to insert instrumentation
+  final executable; which `orch8rion` will modify to insert instrumentation
   code at all relevant places;
 - The `link` command builds the final executable by linking together all the Go
-  packages that contribute to the `main` entry point; to which `orchestrion`
+  packages that contribute to the `main` entry point; to which `orch8rion`
   adds any library required by injected code that was not already present in the
   dependency tree.
 
 ### Integrating with `GOCACHE`
 
-The attentive reader will have noticed that this means `orchestrion` changes the
+The attentive reader will have noticed that this means `orch8rion` changes the
 dependency tree of packages being compiled by possibly adding new branches to
 it; but the _build ID_ has already been calculated before `compile` and `link`
 are involved... To properly integrate with the Go build artifact cache,
-`orchestrion` intercepts the `-V=full` invocations of toolchain commands, and
+`orch8rion` intercepts the `-V=full` invocations of toolchain commands, and
 appends versioning information including:
 - its own version (a development build of `v0.7.2` in the example below)
 - the transitive closure of packages it may inject (resulting in the hash listed
@@ -87,11 +87,11 @@ appends versioning information including:
 - the checksum of the built-in injection rules (listef after `aspects=` below)
 
 The Go toolchain expects a resulting string composed of three fields, so
-Orchestrion composes into a rather long output:
+Orch8rion composes into a rather long output:
 
 ```shell
-$ orchestrion toolexec $(go env GOTOOLDIR)/compile -V=full
-compile version go1.22.5:orchestrion@v0.7.2+MqXURZSvaKZl7setr4REn5Jn6AlQBABEe3QuUlyYTzW4yJ2XhUTMdsUnd1xjjnvTSxcV76mP7mquaAQCo7nwow==;injectables=lGUc8QV91HuOK1yWcSxkfmUFLQbKekTyy0eANpJE0rmeGmHR5D61VXn04/XX2kjuPbo8Nrdo+dFBmKPgpKV9jQ==;aspects=sha512:M1yO7gdlnh5Uy2ySDJZp1/QbFL97hY5HGKHYpIq2r561weEn4pAbseW7yBGNuQAP8lTpY4Id8M5jC1ItvVcj2w==
+$ orch8rion toolexec $(go env GOTOOLDIR)/compile -V=full
+compile version go1.22.5:orch8rion@v0.7.2+MqXURZSvaKZl7setr4REn5Jn6AlQBABEe3QuUlyYTzW4yJ2XhUTMdsUnd1xjjnvTSxcV76mP7mquaAQCo7nwow==;injectables=lGUc8QV91HuOK1yWcSxkfmUFLQbKekTyy0eANpJE0rmeGmHR5D61VXn04/XX2kjuPbo8Nrdo+dFBmKPgpKV9jQ==;aspects=sha512:M1yO7gdlnh5Uy2ySDJZp1/QbFL97hY5HGKHYpIq2r561weEn4pAbseW7yBGNuQAP8lTpY4Id8M5jC1ItvVcj2w==
 ```
 
 ## Next

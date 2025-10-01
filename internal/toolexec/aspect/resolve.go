@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/jobserver/pkgs"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/jobserver/pkgs"
 )
 
 // resolvePackageFiles attempts to retrieve the archive for the designated import path. It attempts

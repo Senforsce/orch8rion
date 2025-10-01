@@ -15,7 +15,7 @@ aspects:
           imports:
             # Add a synthetic import here with the same alias as the receiver in the method Get
             # below, where the aspect will apply and trigger the bug.
-            # See: https://github.com/DataDog/orchestrion/issues/674
+            # See: https://github.com/senforsce/orch8rion/issues/674
             client: github.com/DataDog/dd-trace-go/contrib/net/http/v2/client
           template: |-
             {{- $ctx := .Function.ArgumentOfType "context.Context" -}}

@@ -12,18 +12,18 @@ import (
 	"strings"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/pin"
-	"github.com/DataDog/orchestrion/internal/toolexec"
-	"github.com/DataDog/orchestrion/internal/toolexec/aspect"
-	"github.com/DataDog/orchestrion/internal/toolexec/proxy"
 	"github.com/rs/zerolog"
+	"github.com/senforsce/orch8rion/internal/pin"
+	"github.com/senforsce/orch8rion/internal/toolexec"
+	"github.com/senforsce/orch8rion/internal/toolexec/aspect"
+	"github.com/senforsce/orch8rion/internal/toolexec/proxy"
 	"github.com/urfave/cli/v2"
 )
 
 var Toolexec = &cli.Command{
 	Name:            "toolexec",
 	Usage:           "Standard `-toolexec` plugin for the Go toolchain",
-	UsageText:       "orchestrion toolexec [tool] [tool args...]",
+	UsageText:       "orch8rion toolexec [tool] [tool args...]",
 	Args:            true,
 	SkipFlagParsing: true,
 	Action: func(clictx *cli.Context) (resErr error) {
@@ -56,8 +56,8 @@ var Toolexec = &cli.Command{
 			return err
 		}
 
-		// Ensure Orchestrion is properly pinned
-		if err := pin.AutoPinOrchestrion(ctx, clictx.App.Writer, clictx.App.ErrWriter); err != nil {
+		// Ensure Orch8rion is properly pinned
+		if err := pin.AutoPinOrch8rion(ctx, clictx.App.Writer, clictx.App.ErrWriter); err != nil {
 			return cli.Exit(err, -1)
 		}
 

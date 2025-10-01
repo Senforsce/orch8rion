@@ -4,7 +4,7 @@ package test
 import (
   "context"
 //line <generated>:1
-  __orchestrion_tracer "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+  __orch8rion_tracer "gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 // Matches both: has context in args and error in returns
@@ -13,13 +13,13 @@ import (
 func withContextAndError(ctx context.Context, data []byte) (_ string, __result__1 error) {
 //line <generated>:1
   {
-    var span __orchestrion_tracer.Span
-    span, ctx = __orchestrion_tracer.StartSpanFromContext(ctx, "withContextAndError",
-      __orchestrion_tracer.Tag("function-name", "withContextAndError"),
+    var span __orch8rion_tracer.Span
+    span, ctx = __orch8rion_tracer.StartSpanFromContext(ctx, "withContextAndError",
+      __orch8rion_tracer.Tag("function-name", "withContextAndError"),
     )
 
     defer func() {
-      span.Finish(__orchestrion_tracer.WithError(__result__1))
+      span.Finish(__orch8rion_tracer.WithError(__result__1))
     }()
 
   }
@@ -31,13 +31,13 @@ func withContextAndError(ctx context.Context, data []byte) (_ string, __result__
 func withContextInMiddle(data []byte, ctx context.Context, moreData []byte) (_ string, __result__1 error) {
 //line <generated>:1
   {
-    var span __orchestrion_tracer.Span
-    span, ctx = __orchestrion_tracer.StartSpanFromContext(ctx, "withContextInMiddle",
-      __orchestrion_tracer.Tag("function-name", "withContextInMiddle"),
+    var span __orch8rion_tracer.Span
+    span, ctx = __orch8rion_tracer.StartSpanFromContext(ctx, "withContextInMiddle",
+      __orch8rion_tracer.Tag("function-name", "withContextInMiddle"),
     )
 
     defer func() {
-      span.Finish(__orchestrion_tracer.WithError(__result__1))
+      span.Finish(__orch8rion_tracer.WithError(__result__1))
     }()
 
   }
@@ -50,13 +50,13 @@ func onlyError(data []byte) (_ string, __result__1 error) {
 //line <generated>:1
   {
     ctx := context.TODO()
-    var span __orchestrion_tracer.Span
-    span, ctx = __orchestrion_tracer.StartSpanFromContext(ctx, "onlyError",
-      __orchestrion_tracer.Tag("function-name", "onlyError"),
+    var span __orch8rion_tracer.Span
+    span, ctx = __orch8rion_tracer.StartSpanFromContext(ctx, "onlyError",
+      __orch8rion_tracer.Tag("function-name", "onlyError"),
     )
 
     defer func() {
-      span.Finish(__orchestrion_tracer.WithError(__result__1))
+      span.Finish(__orch8rion_tracer.WithError(__result__1))
     }()
 
   }
@@ -68,9 +68,9 @@ func onlyError(data []byte) (_ string, __result__1 error) {
 func onlyContext(data []byte, ctx context.Context, moreData []byte) string {
 //line <generated>:1
   {
-    var span __orchestrion_tracer.Span
-    span, ctx = __orchestrion_tracer.StartSpanFromContext(ctx, "onlyContext",
-      __orchestrion_tracer.Tag("function-name", "onlyContext"),
+    var span __orch8rion_tracer.Span
+    span, ctx = __orch8rion_tracer.StartSpanFromContext(ctx, "onlyContext",
+      __orch8rion_tracer.Tag("function-name", "onlyContext"),
     )
 
     defer span.Finish()

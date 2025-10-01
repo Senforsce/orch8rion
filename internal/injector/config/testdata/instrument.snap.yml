@@ -1,16 +1,16 @@
-pkgpath: github.com/DataDog/orchestrion/instrument
+pkgpath: github.com/senforsce/orch8rion/instrument
 imports:
-  - pkgpath: github.com/DataDog/orchestrion
+  - pkgpath: github.com/senforsce/orch8rion
     yaml:
       name: <built-in>
       aspects:
-        - built.WithOrchestrion
-        - built.WithOrchestrionVersion
+        - built.WithOrch8rion
+        - built.WithOrch8rionVersion
   - pkgpath: gopkg.in/DataDog/dd-trace-go.v1
     imports:
       - pkgpath: gopkg.in/DataDog/dd-trace-go.v1/civisibility
         yaml:
-          name: orchestrion.yml
+          name: orch8rion.yml
           aspects:
             - M.Run
             - T.Run
@@ -29,7 +29,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/99designs/gqlgen/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - New
         yaml: null
@@ -37,7 +37,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/IBM/sarama/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewConsumer
                 - NewSyncProducer
@@ -47,7 +47,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/Shopify/sarama/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewConsumer
                 - NewSyncProducer
@@ -57,7 +57,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/aws/aws-sdk-go-v2/v2/aws
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Config
                 - '*Config'
@@ -66,7 +66,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/aws/aws-sdk-go/v2/aws
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - session.NewSession
         yaml: null
@@ -74,7 +74,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/cloud.google.com/go/pubsub.v1/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Subscription.Receive
                 - PublishResult
@@ -85,7 +85,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Consumer
                 - NewConsumer
@@ -105,7 +105,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/confluentinc/confluent-kafka-go/kafka.v2/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Consumer
                 - NewConsumer
@@ -125,7 +125,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/database/sql/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - sql.Register
                 - sql.Open
@@ -135,7 +135,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/elastic/go-elasticsearch.v6/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - v6.Config
                 - '*v6.Config'
@@ -148,7 +148,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/gin-gonic/gin/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - New
         yaml: null
@@ -156,7 +156,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/go-chi/chi/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewMux
         yaml: null
@@ -164,7 +164,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/go-chi/chi.v5/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewMux
         yaml: null
@@ -172,7 +172,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/go-redis/redis/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewClient
         yaml: null
@@ -180,7 +180,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/go-redis/redis.v7/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewClient
         yaml: null
@@ -188,7 +188,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/go-redis/redis.v8/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewClient
         yaml: null
@@ -196,7 +196,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/go.mongodb.org/mongo-driver/v2/mongo
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Client
         yaml: null
@@ -204,7 +204,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/gocql/gocql/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - ClusterConfig
                 - '*ClusterConfig'
@@ -213,7 +213,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/gofiber/fiber.v2/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - New
         yaml: null
@@ -221,7 +221,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/gomodule/redigo/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Dial
                 - DialContext
@@ -231,7 +231,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/google.golang.org/grpc/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Client
                 - Server
@@ -240,7 +240,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/gorilla/mux/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Router.__dd_config
                 - NewRouter
@@ -250,7 +250,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/gorm.io/gorm.v1/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Open
         yaml: null
@@ -258,7 +258,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/graph-gophers/graphql-go/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - ParseSchema
         yaml: null
@@ -266,7 +266,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/graphql-go/graphql/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewSchema
         yaml: null
@@ -274,7 +274,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/hashicorp/vault/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Config
         yaml: null
@@ -282,7 +282,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/jackc/pgx.v5/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Connect
                 - ConnectConfig
@@ -291,14 +291,14 @@ imports:
         yaml: null
       - pkgpath: gopkg.in/DataDog/dd-trace-go.v1/contrib/jinzhu/gorm
         yaml:
-          name: orchestrion.yml
+          name: orch8rion.yml
           aspects:
             - Open
       - pkgpath: gopkg.in/DataDog/dd-trace-go.v1/contrib/julienschmidt/httprouter
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/julienschmidt/httprouter/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Router.__dd_config
                 - Router.ServeHTTP
@@ -307,7 +307,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/k8s.io/client-go/v2/kubernetes
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - rest.Config
         yaml: null
@@ -315,7 +315,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/labstack/echo.v4/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - New
         yaml: null
@@ -323,7 +323,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/log/slog/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - New
         yaml: null
@@ -331,15 +331,15 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/net/http/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               extends:
-                - name: ./orchestrion.client.yml
+                - name: ./orch8rion.client.yml
                   aspects:
                     - Transport.DD__tracer_internal
                     - Transport.DD__tracer_internal=true
                     - Transport.RoundTrip
                     - Get|Head|Post|PostForm
-                - name: ./orchestrion.server.yml
+                - name: ./orch8rion.server.yml
                   aspects:
                     - Server.Serve
         yaml: null
@@ -347,7 +347,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/v2/contrib/os
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - OpenFile
         yaml: null
@@ -355,7 +355,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/redis/go-redis.v9/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewClient
         yaml: null
@@ -363,7 +363,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/redis/rueidis/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewClient
         yaml: null
@@ -371,7 +371,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/segmentio/kafka-go/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Reader
                 - Reader.FetchMessage
@@ -383,7 +383,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/sirupsen/logrus/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - DDContextLogHook
                 - New
@@ -394,7 +394,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/twitchtv/twirp/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - Server
         yaml: null
@@ -402,7 +402,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/contrib/valkey-io/valkey-go/v2
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - NewClient
         yaml: null
@@ -410,9 +410,9 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/v2/ddtrace/tracer
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               extends:
-                - name: ../../internal/orchestrion/gls.orchestrion.yml
+                - name: ../../internal/orch8rion/gls.orch8rion.yml
                   aspects:
                     - __dd_gls_v2
                     - goexit1
@@ -424,7 +424,7 @@ imports:
         imports:
           - pkgpath: github.com/DataDog/dd-trace-go/v2/profiler
             yaml:
-              name: orchestrion.yml
+              name: orch8rion.yml
               aspects:
                 - func main()
         yaml: null

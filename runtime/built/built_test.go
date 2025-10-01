@@ -13,8 +13,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/DataDog/orchestrion/internal/injector/config"
-	"github.com/DataDog/orchestrion/internal/version"
+	"github.com/senforsce/orch8rion/internal/injector/config"
+	"github.com/senforsce/orch8rion/internal/version"
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,7 +22,7 @@ func Test(t *testing.T) {
 	tmp := t.TempDir()
 
 	require.NoError(t, os.WriteFile(filepath.Join(tmp, "main.go"), []byte(testProgram), 0o644))
-	require.NoError(t, os.WriteFile(filepath.Join(tmp, config.FilenameOrchestrionToolGo), []byte(orchestrionToolGo), 0o644))
+	require.NoError(t, os.WriteFile(filepath.Join(tmp, config.FilenameOrch8rionToolGo), []byte(orch8rionToolGo), 0o644))
 
 	cmd := exec.Command("go", "mod", "init", "dummy.test")
 	cmd.Dir = tmp
@@ -30,7 +30,7 @@ func Test(t *testing.T) {
 
 	_, thisFile, _, _ := runtime.Caller(0)
 	rootDir := filepath.Join(thisFile, "..", "..", "..")
-	cmd = exec.Command("go", "mod", "edit", "-replace=github.com/DataDog/orchestrion="+rootDir)
+	cmd = exec.Command("go", "mod", "edit", "-replace=github.com/senforsce/orch8rion="+rootDir)
 	cmd.Dir = tmp
 	require.NoError(t, cmd.Run())
 
@@ -39,7 +39,7 @@ func Test(t *testing.T) {
 	require.NoError(t, cmd.Run())
 
 	var stdout bytes.Buffer
-	cmd = exec.Command("go", "run", "github.com/DataDog/orchestrion", "go", "run", ".")
+	cmd = exec.Command("go", "run", "github.com/senforsce/orch8rion", "go", "run", ".")
 	cmd.Dir = tmp
 	cmd.Stdout = &stdout
 	cmd.Stderr = os.Stderr
@@ -54,23 +54,23 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/orchestrion/runtime/built"
+	"github.com/senforsce/orch8rion/runtime/built"
 )
 
 func main() {
-	if !built.WithOrchestrion {
+	if !built.WithOrch8rion {
 		os.Exit(42)
 	}
 
-	fmt.Print(built.WithOrchestrionVersion)
+	fmt.Print(built.WithOrch8rionVersion)
 }
 `
 
-const orchestrionToolGo = `//go:build tools
+const orch8rionToolGo = `//go:build tools
 
 package tools
 
 import (
-	_ "github.com/DataDog/orchestrion"
+	_ "github.com/senforsce/orch8rion"
 )
 `

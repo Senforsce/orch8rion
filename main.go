@@ -21,31 +21,31 @@ import (
 	"time"
 
 	"github.com/DataDog/dd-trace-go/v2/ddtrace/tracer"
-	"github.com/DataDog/orchestrion/internal/cmd"
-	"github.com/DataDog/orchestrion/internal/jobserver/client"
-	"github.com/DataDog/orchestrion/internal/traceutil"
-	"github.com/DataDog/orchestrion/internal/version"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
+	"github.com/senforsce/orch8rion/internal/cmd"
+	"github.com/senforsce/orch8rion/internal/jobserver/client"
+	"github.com/senforsce/orch8rion/internal/traceutil"
+	"github.com/senforsce/orch8rion/internal/version"
 	"github.com/urfave/cli/v2"
 )
 
 const (
-	envVarOrchestrionTrace           = "ORCHESTRION_TRACE"
-	envVarOrchestrionLogFile         = "ORCHESTRION_LOG_FILE"
-	envVarOrchestrionLogLevel        = "ORCHESTRION_LOG_LEVEL"
-	envVarOrchestrionProfilePath     = "ORCHESTRION_PROFILE_PATH"
-	envVarOrchestrionEnabledProfiles = "ORCHESTRION_ENABLED_PROFILES"
-	envVarToolexecImportPath         = "TOOLEXEC_IMPORTPATH"
+	envVarOrch8rionTrace           = "ORCHESTRION_TRACE"
+	envVarOrch8rionLogFile         = "ORCHESTRION_LOG_FILE"
+	envVarOrch8rionLogLevel        = "ORCHESTRION_LOG_LEVEL"
+	envVarOrch8rionProfilePath     = "ORCHESTRION_PROFILE_PATH"
+	envVarOrch8rionEnabledProfiles = "ORCHESTRION_ENABLED_PROFILES"
+	envVarToolexecImportPath       = "TOOLEXEC_IMPORTPATH"
 )
 
 func main() {
 	ctx := context.Background()
 
 	// If requested, start the tracer...
-	if os.Getenv(envVarOrchestrionTrace) != "" {
+	if os.Getenv(envVarOrch8rionTrace) != "" {
 		tracer.Start(
-			tracer.WithService("github.com/DataDog/orchestrion"),
+			tracer.WithService("github.com/senforsce/orch8rion"),
 			tracer.WithServiceVersion(version.Tag()),
 			tracer.WithLogStartup(false),
 		)
@@ -68,7 +68,7 @@ func main() {
 	log.Logger = log.Output(zerolog.ConsoleWriter{
 		Out:           os.Stderr,
 		TimeFormat:    time.RFC3339,
-		FieldsExclude: []string{"orchestrion", "pid", "ppid"},
+		FieldsExclude: []string{"orch8rion", "pid", "ppid"},
 		FieldsOrder:   []string{envVarToolexecImportPath, "phase"},
 	})
 	log.Logger = log.Logger.Level(zerolog.Disabled)
@@ -82,9 +82,9 @@ func main() {
 
 	// Setup the CLI application
 	app := cli.App{
-		Name:        "orchestrion",
+		Name:        "orch8rion",
 		Usage:       "Automatic compile-time instrumentation of Go code",
-		Description: "Orchestrion automatically adds instrumentation to Go applications at compile-time by interfacing with the standard Go toolchain using the -toolexec mechanism to re-write source code before it is passed to the compiler.\n\nFor more information, visit https://datadoghq.dev/orchestrion",
+		Description: "Orch8rion automatically adds instrumentation to Go applications at compile-time by interfacing with the standard Go toolchain using the -toolexec mechanism to re-write source code before it is passed to the compiler.\n\nFor more information, visit https://datadoghq.dev/orch8rion",
 		Copyright:   "2023-present Datadog, Inc.",
 		HideVersion: true,
 		Flags: []cli.Flag{
@@ -111,7 +111,7 @@ func main() {
 			&cli.StringFlag{
 				Category: "Logging",
 				Name:     "log-level",
-				EnvVars:  []string{envVarOrchestrionLogLevel},
+				EnvVars:  []string{envVarOrch8rionLogLevel},
 				Usage:    "Set the log level (PANIC, FATAL, ERROR, WARN, INFO, DEBUG, DISABLED)",
 				Value:    "DISABLED",
 				Action:   actionSetLogLevel,
@@ -119,21 +119,21 @@ func main() {
 			&cli.StringFlag{
 				Category: "Logging",
 				Name:     "log-file",
-				EnvVars:  []string{envVarOrchestrionLogFile},
+				EnvVars:  []string{envVarOrch8rionLogFile},
 				Usage:    "Send logging output to a file instead of STDERR. Unless --log-level is also specified, the default log level changed to WARN.",
 				Action:   actionSetLogFile,
 			},
 			&cli.StringFlag{
 				Category: "Profiling",
 				Name:     "profile-path",
-				EnvVars:  []string{envVarOrchestrionProfilePath},
+				EnvVars:  []string{envVarOrch8rionProfilePath},
 				Usage:    "Path for profiling data. Defaults to the current working directory",
 				Hidden:   true,
 			},
 			&cli.StringSliceFlag{
 				Category: "Profiling",
 				Name:     "profile",
-				EnvVars:  []string{envVarOrchestrionEnabledProfiles},
+				EnvVars:  []string{envVarOrch8rionEnabledProfiles},
 				Usage:    "Enable the given profiler. Valid options are \"cpu\", \"heap\", and \"trace\". Can be specified multiple times.",
 				Hidden:   true,
 			},
@@ -160,8 +160,8 @@ func main() {
 			if err := os.MkdirAll(profilePath, 0775); err != nil && !errors.Is(err, fs.ErrExist) {
 				return err
 			}
-			if err := os.Setenv(envVarOrchestrionProfilePath, profilePath); err != nil {
-				return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrchestrionProfilePath, err), 1)
+			if err := os.Setenv(envVarOrch8rionProfilePath, profilePath); err != nil {
+				return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrch8rionProfilePath, err), 1)
 			}
 			for _, p := range profiles {
 				var err error
@@ -179,8 +179,8 @@ func main() {
 					return fmt.Errorf("enabling profile %s: %w", p, err)
 				}
 			}
-			if err := os.Setenv(envVarOrchestrionEnabledProfiles, strings.Join(profiles, ",")); err != nil {
-				return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrchestrionEnabledProfiles, err), 1)
+			if err := os.Setenv(envVarOrch8rionEnabledProfiles, strings.Join(profiles, ",")); err != nil {
+				return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrch8rionEnabledProfiles, err), 1)
 			}
 			return nil
 		},
@@ -199,7 +199,7 @@ func main() {
 				}
 			}
 			if slices.Contains(ctx.StringSlice("profile"), "heap") {
-				filename := profilePath(ctx.String("profile-path"), "orchestrion-heap-%d.pprof")
+				filename := profilePath(ctx.String("profile-path"), "orch8rion-heap-%d.pprof")
 				f, err := profileToFile(filename, func(w io.Writer) error {
 					return pprof.Lookup("heap").WriteTo(w, 0)
 				})
@@ -230,8 +230,8 @@ var (
 )
 
 func actionSetLogLevel(ctx *cli.Context, value string) error {
-	if err := os.Setenv(envVarOrchestrionLogLevel, value); err != nil {
-		return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrchestrionLogLevel, err), 1)
+	if err := os.Setenv(envVarOrch8rionLogLevel, value); err != nil {
+		return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrch8rionLogLevel, err), 1)
 	}
 	var level zerolog.Level
 	if err := level.UnmarshalText([]byte(value)); err != nil {
@@ -253,8 +253,8 @@ func actionSetLogFile(ctx *cli.Context, path string) error {
 			path = filepath.Join(wd, path)
 		}
 	}
-	if err := os.Setenv(envVarOrchestrionLogFile, path); err != nil {
-		return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrchestrionLogFile, err), 1)
+	if err := os.Setenv(envVarOrch8rionLogFile, path); err != nil {
+		return cli.Exit(fmt.Errorf("setting environment %s: %w", envVarOrch8rionLogFile, err), 1)
 	}
 	filename := os.Expand(path, func(name string) string {
 		switch name {
@@ -310,7 +310,7 @@ func profileToFile(filename string, collect func(io.Writer) error) (*os.File, er
 }
 
 func startCPUProfiling(prefix string) (*os.File, error) {
-	filename := profilePath(prefix, "orchestrion-cpu-%d.pprof")
+	filename := profilePath(prefix, "orch8rion-cpu-%d.pprof")
 	f, err := profileToFile(filename, pprof.StartCPUProfile)
 	if err != nil {
 		return nil, fmt.Errorf("starting CPU profiling: %w", err)
@@ -319,7 +319,7 @@ func startCPUProfiling(prefix string) (*os.File, error) {
 }
 
 func startExecutionTracing(prefix string) (*os.File, error) {
-	filename := profilePath(prefix, "orchestrion-%d.trace")
+	filename := profilePath(prefix, "orch8rion-%d.trace")
 	f, err := profileToFile(filename, trace.Start)
 	if err != nil {
 		return nil, fmt.Errorf("starting execution tracing: %w", err)
@@ -328,7 +328,7 @@ func startExecutionTracing(prefix string) (*os.File, error) {
 }
 
 func updateCommonContext(c zerolog.Context) zerolog.Context {
-	c = c.Str("orchestrion", version.Tag())
+	c = c.Str("orch8rion", version.Tag())
 	c = c.Int("pid", os.Getpid())
 	c = c.Int("ppid", os.Getppid())
 	if val := os.Getenv(envVarToolexecImportPath); val != "" {

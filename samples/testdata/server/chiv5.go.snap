@@ -11,7 +11,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 //line <generated>:1
-	__orchestrion_chitrace "github.com/DataDog/dd-trace-go/contrib/go-chi/chi.v5/v2"
+	__orch8rion_chitrace "github.com/DataDog/dd-trace-go/contrib/go-chi/chi.v5/v2"
 )
 
 //line samples/server/chiv5.go:14
@@ -23,7 +23,7 @@ func chiV5Server() {
 //line samples/server/chiv5.go:15
 				chi.NewRouter()
 //line <generated>:1
-			mux.Use(__orchestrion_chitrace.Middleware())
+			mux.Use(__orch8rion_chitrace.Middleware())
 			return mux
 		}()
 //line samples/server/chiv5.go:16

@@ -11,14 +11,14 @@ import (
 
 	"google.golang.org/grpc"
 //line <generated>:1
-	__orchestrion_grpctrace "github.com/DataDog/dd-trace-go/contrib/google.golang.org/grpc/v2"
+	__orch8rion_grpctrace "github.com/DataDog/dd-trace-go/contrib/google.golang.org/grpc/v2"
 )
 
 //line samples/client/grpc.go:14
 func grpcClient() {
 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure(),
 //line <generated>:1
-		grpc.WithChainStreamInterceptor(__orchestrion_grpctrace.StreamClientInterceptor()), grpc.WithChainUnaryInterceptor(__orchestrion_grpctrace.UnaryClientInterceptor()))
+		grpc.WithChainStreamInterceptor(__orch8rion_grpctrace.StreamClientInterceptor()), grpc.WithChainUnaryInterceptor(__orch8rion_grpctrace.UnaryClientInterceptor()))
 //line samples/client/grpc.go:16
 	if err != nil {
 		log.Fatal(err)

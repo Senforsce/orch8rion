@@ -25,7 +25,7 @@ func Test(t *testing.T) {
 		defer cancel()
 	}
 
-	const importPath = "github.com/DataDog/orchestrion.test"
+	const importPath = "github.com/senforsce/orch8rion.test"
 	buildID := uuid.NewString()
 
 	t.Run("not-started", func(t *testing.T) {
@@ -125,7 +125,7 @@ func Test(t *testing.T) {
 	})
 
 	t.Run("start-finish-finish", func(t *testing.T) {
-		const importPath = "github.com/DataDog/orchestrion.test"
+		const importPath = "github.com/senforsce/orch8rion.test"
 		subject := &service{dir: t.TempDir()}
 
 		start, err := subject.start(ctx, StartRequest{ImportPath: importPath, BuildID: buildID})
@@ -149,7 +149,7 @@ func Test(t *testing.T) {
 	})
 
 	t.Run("start-badtoken-finish", func(t *testing.T) {
-		const importPath = "github.com/DataDog/orchestrion.test"
+		const importPath = "github.com/senforsce/orch8rion.test"
 		subject := &service{dir: t.TempDir()}
 
 		start, err := subject.start(ctx, StartRequest{ImportPath: importPath, BuildID: buildID})
@@ -181,7 +181,7 @@ func Test(t *testing.T) {
 	})
 
 	t.Run("start-reuse-error", func(t *testing.T) {
-		const importPath = "github.com/DataDog/orchestrion.test"
+		const importPath = "github.com/senforsce/orch8rion.test"
 		subject := &service{dir: t.TempDir()}
 
 		start, err := subject.start(ctx, StartRequest{ImportPath: importPath, BuildID: buildID})
@@ -214,7 +214,7 @@ func Test(t *testing.T) {
 	})
 
 	t.Run("start-reuse-bad-response", func(t *testing.T) {
-		const importPath = "github.com/DataDog/orchestrion.test"
+		const importPath = "github.com/senforsce/orch8rion.test"
 		subject := &service{dir: t.TempDir()}
 
 		start, err := subject.start(ctx, StartRequest{ImportPath: importPath, BuildID: buildID})
@@ -244,7 +244,7 @@ func Test(t *testing.T) {
 	})
 
 	t.Run("start-reuse-missing.archive.file", func(t *testing.T) {
-		const importPath = "github.com/DataDog/orchestrion.test"
+		const importPath = "github.com/senforsce/orch8rion.test"
 		subject := &service{dir: t.TempDir()}
 
 		start, err := subject.start(ctx, StartRequest{ImportPath: importPath, BuildID: buildID})
@@ -278,7 +278,7 @@ func Test(t *testing.T) {
 	})
 
 	t.Run("start-reuse-missing.extra.file", func(t *testing.T) {
-		const importPath = "github.com/DataDog/orchestrion.test"
+		const importPath = "github.com/senforsce/orch8rion.test"
 		subject := &service{dir: t.TempDir()}
 
 		start, err := subject.start(ctx, StartRequest{ImportPath: importPath, BuildID: buildID})

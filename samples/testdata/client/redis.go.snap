@@ -17,11 +17,11 @@ import (
 	redigo "github.com/gomodule/redigo/redis"
 	redisv9 "github.com/redis/go-redis/v9"
 //line <generated>:1
-	__orchestrion_trace "github.com/DataDog/dd-trace-go/contrib/go-redis/redis.v7/v2"
-	__orchestrion_trace1 "github.com/DataDog/dd-trace-go/contrib/go-redis/redis.v8/v2"
-	__orchestrion_trace2 "github.com/DataDog/dd-trace-go/contrib/go-redis/redis/v2"
-	__orchestrion_redigotrace "github.com/DataDog/dd-trace-go/contrib/gomodule/redigo/v2"
-	__orchestrion_trace3 "github.com/DataDog/dd-trace-go/contrib/redis/go-redis.v9/v2"
+	__orch8rion_trace "github.com/DataDog/dd-trace-go/contrib/go-redis/redis.v7/v2"
+	__orch8rion_trace1 "github.com/DataDog/dd-trace-go/contrib/go-redis/redis.v8/v2"
+	__orch8rion_trace2 "github.com/DataDog/dd-trace-go/contrib/go-redis/redis/v2"
+	__orch8rion_redigotrace "github.com/DataDog/dd-trace-go/contrib/gomodule/redigo/v2"
+	__orch8rion_trace3 "github.com/DataDog/dd-trace-go/contrib/redis/go-redis.v9/v2"
 )
 
 //line samples/client/redis.go:20
@@ -33,7 +33,7 @@ func redisV0Client() {
 //line samples/client/redis.go:21
 				redisv0.NewClient(&redisv0.Options{Addr: "127.0.0.1", Password: "", DB: 0})
 //line <generated>:1
-			__orchestrion_trace2.WrapClient(client)
+			__orch8rion_trace2.WrapClient(client)
 			return
 		}()
 //line samples/client/redis.go:22
@@ -51,7 +51,7 @@ func redisV7Client() {
 //line samples/client/redis.go:29
 				redisv7.NewClient(&redisv7.Options{Addr: "127.0.0.1", Password: "", DB: 0})
 //line <generated>:1
-			__orchestrion_trace.WrapClient(client)
+			__orch8rion_trace.WrapClient(client)
 			return
 		}()
 //line samples/client/redis.go:30
@@ -69,7 +69,7 @@ func redisV8Client(ctx context.Context) {
 //line samples/client/redis.go:37
 				redisv8.NewClient(&redisv8.Options{Addr: "127.0.0.1", Password: "", DB: 0})
 //line <generated>:1
-			__orchestrion_trace1.WrapClient(client)
+			__orch8rion_trace1.WrapClient(client)
 			return
 		}()
 //line samples/client/redis.go:38
@@ -87,7 +87,7 @@ func redisV9Client(ctx context.Context) {
 //line samples/client/redis.go:45
 				redisv9.NewClient(&redisv9.Options{Addr: "127.0.0.1", Password: "", DB: 0})
 //line <generated>:1
-			__orchestrion_trace3.WrapClient(client)
+			__orch8rion_trace3.WrapClient(client)
 			return
 		}()
 //line samples/client/redis.go:46
@@ -109,7 +109,7 @@ func redigoClient(ctx context.Context, net string, addr string) {
 	conn, err :=
 //line <generated>:1
 		func() (redigo.Conn, error) {
-			return __orchestrion_redigotrace.Dial(
+			return __orch8rion_redigotrace.Dial(
 //line samples/client/redis.go:61
 				net, addr)
 		}()
@@ -122,7 +122,7 @@ func redigoClient(ctx context.Context, net string, addr string) {
 	conn, err =
 //line <generated>:1
 		func() (redigo.Conn, error) {
-			return __orchestrion_redigotrace.DialContext(
+			return __orch8rion_redigotrace.DialContext(
 //line samples/client/redis.go:67
 				ctx, net, addr, redigo.DialConnectTimeout(5*time.Second))
 		}()
@@ -143,7 +143,7 @@ func redigoClient(ctx context.Context, net string, addr string) {
 			for i, v := range opts {
 				anyOpts[i] = v
 			}
-			return __orchestrion_redigotrace.DialURL(
+			return __orch8rion_redigotrace.DialURL(
 //line samples/client/redis.go:73
 				fmt.Sprintf("%s://%s", net, addr),
 //line <generated>:1
